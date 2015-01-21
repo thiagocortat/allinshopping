@@ -1,0 +1,21 @@
+<resources>
+
+    <string name="app_name">Ella S/A</string>
+    <string name="action_settings">Configurações</string>
+    <string name="shopping_cart">Pedido</string>
+    <string name="cliente">Cliente</string>
+    <string name="abrir_dia">Clique aqui para abrir os dias</string>
+    <string name="setores">Escolha uma das nossas seções</string>
+    <string name="estado">Estado</string>
+    <string name="pagamento">Pagamento</string>
+    <string name="clientes">Clientes</string>
+    <string name="title_activity_cartao_credito">Cartão de Crédito</string>
+    <string name="title_activity_conta_bancaria">Débito em Conta</string>
+    <string name="title_activity_configuration">Configuração</string>
+    <string name="avancar">Avançar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="concluir">Concluir</string>
+    <string name="promocao">Produtos em destaque</string>
+
+
+</resources>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingBottom="@dimen/margin"
+    android:paddingLeft="@dimen/margin"
+    android:paddingRight="@dimen/margin"
+    android:paddingTop="@dimen/margin" xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:id="@id/linear_item"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" >
+
+        <Button
+            android:id="@id/salvar"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="@string/avancar" />
+
+        <Button
+            android:id="@id/cancelar"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="@string/cancelar" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/linear_item"
+        android:layout_alignLeft="@id/linear_item" >
+    
+    <LinearLayout
+        android:id="@id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+            <EditText
+                android:id="@id/primeiroNome"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="Primeiro Nome"
+                android:paddingTop="20.0dip" >
+
+                <requestFocus />
+            </EditText>
+
+            <EditText
+                android:id="@id/ultimoNome"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ultimo Nome"
+                android:paddingTop="20.0dip" >
+            </EditText>
+
+            <EditText
+                android:id="@id/dataNascimento"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Data de Nascimento"
+                android:inputType="date"
+                android:paddingTop="20.0dip" />
+
+            <EditText
+                android:id="@id/endereco"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="Endereço"
+                android:paddingTop="20.0dip" />
+
+            <EditText
+                android:id="@id/cep"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:hint="CEP"
+                android:inputType="number"
+                android:paddingTop="20.0dip" />
+
+            <EditText
+                android:id="@id/bairro"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="Bairro"
+                android:paddingTop="20.0dip" />
+
+            <EditText
+                android:id="@id/cidade"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="Cidade"
+                android:paddingTop="20.0dip" />
+
+            <Spinner
+                android:id="@id/estados"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="20.0dip"
+                android:prompt="@string/estado" />
+
+            <EditText
+                android:id="@id/email"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="E-mail"
+                android:inputType="textEmailAddress"
+                android:paddingTop="20.0dip" />
+
+            <EditText
+                android:id="@id/telefone"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Telefone (com DDD)"
+                android:inputType="text|phone"
+                android:paddingTop="20.0dip" />
+
+            <EditText
+                android:id="@id/celular"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Celular (com DDD)"
+                android:inputType="text|phone"
+                android:paddingTop="20.0dip" />
+
+    </LinearLayout>
+    
+    </ScrollView>
+
+</RelativeLayout>

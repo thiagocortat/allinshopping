@@ -1,0 +1,27 @@
+<resources>
+
+
+    <!--<style name="AppBaseTheme" parent="@android:style/Theme.Light" />-->
+    <!--<style name="AppTheme" parent="@style/AppBaseTheme" />-->
+
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.Apptheme">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="Widget" />
+
+    <style name="Widget.ActionBar" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse" />
+
+    <style name="Widget.Light" />
+
+    <style name="Widget.Light.ActionBar" parent="@android:style/Widget.Holo.Light.ActionBar.Solid" />
+
+    <style name="EditTextCadastroStyle" >
+        <item name="baseColor">@android:color/black</item>
+        <item name="floatingLabel">highlight</item>
+        <item name="primaryColor">?colorAccent</item>
+    </style>
+
+</resources>

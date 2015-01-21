@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingBottom="@dimen/margin"
+    android:paddingLeft="@dimen/margin"
+    android:paddingRight="@dimen/margin"
+    android:paddingTop="@dimen/margin" >
+
+    <LinearLayout
+        android:id="@id/linear_item"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" >
+
+        <Button
+            android:id="@id/salvar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="@string/avancar" />
+
+        <Button
+            android:id="@id/cancelar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="@string/cancelar" />
+    </LinearLayout>
+
+
+    <ScrollView android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/linear_item" android:layout_alignParentTop="true">
+
+    <LinearLayout
+        android:id="@id/pagamentos"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/linear_item"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical" >
+
+
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@id/cartao"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="Número do Cartão"
+            android:inputType="number"
+            android:paddingTop="20.0dip"
+            style="@style/EditTextCadastroStyle">
+
+            <requestFocus />
+        </com.rengwuxian.materialedittext.MaterialEditText>
+
+        <LinearLayout android:layout_width="fill_parent" android:layout_height="fill_parent" android:orientation="horizontal">
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@id/cvv"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="CVV"
+                    android:inputType="number"
+                    android:paddingTop="20.0dip"
+                    android:layout_weight="0.8"
+                style="@style/EditTextCadastroStyle"/>
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@id/validade"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Validade"
+                    android:inputType="date"
+                    android:paddingTop="20.0dip" android:layout_weight="0.5"
+                style="@style/EditTextCadastroStyle"/>
+
+        </LinearLayout>
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@id/nome"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nome do dono do cartão"
+            android:paddingTop="20.0dip"
+            style="@style/EditTextCadastroStyle"/>
+        
+         <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@id/cpf"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="CPF"
+                android:inputType="text|phone"
+                android:paddingTop="20.0dip"
+             style="@style/EditTextCadastroStyle"/>
+         
+         <Spinner android:id="@id/parcelas" 
+             	  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"/>
+
+        
+    </LinearLayout>
+
+</ScrollView>
+
+</RelativeLayout>
