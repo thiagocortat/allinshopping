@@ -19,7 +19,7 @@ public class AtributoRepository extends AbstractRepository<Atributo, Long> {
         return super.getDatabase().getAtributoDao();
     }
 
-    public void delete(final Produto produto) {
+    public void delete( Produto produto) {
         try {
             this.getDao().executeRaw("delete from atributo where produto_id = ?", Long.toString(produto.getId()));
         } catch (SQLException e) {

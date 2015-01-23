@@ -45,14 +45,15 @@
                     android:paddingRight="10.0dip" android:text="atributo" android:layout_weight="0.3"/>
 
 
-            <EditText
+            <com.rengwuxian.materialedittext.MaterialEditText
                     android:id="@id/quantidade"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:hint="Quantidade"
                     android:inputType="number"
                     android:paddingLeft="10.0dip"
-                    android:paddingRight="10.0dip" android:layout_weight="0.3"/>
+                    android:paddingRight="10.0dip" android:layout_weight="0.3"
+                style="@style/EditTextCadastroStyle" />
 
             <TextView
                     android:id="@id/preco"
@@ -73,6 +74,7 @@
             android:layout_height="40dp"
             android:paddingLeft="10.0dip"
             android:paddingRight="10.0dip"
+            android:layout_gravity="center_vertical"
             android:text="Remover" android:layout_marginTop="10dp"/>
 
 </LinearLayout>

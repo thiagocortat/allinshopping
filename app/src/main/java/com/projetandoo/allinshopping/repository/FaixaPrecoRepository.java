@@ -12,11 +12,11 @@ import com.projetandoo.allinshopping.models.FaixaPreco;
 
 public class FaixaPrecoRepository extends AbstractRepository<FaixaPreco, Long> {
 
-	public FaixaPrecoRepository(final Context context) {
+	public FaixaPrecoRepository( Context context) {
 		super(context);
 	}
 
-	public FaixaPreco findFaixaPrecoByCEPAndPeso(final Estado origem , final CEP destino) throws SQLException {
+	public FaixaPreco findFaixaPrecoByCEPAndPeso( Estado origem ,  CEP destino) throws SQLException {
 		
 		return getDao().queryBuilder()
 				.where()
@@ -28,7 +28,7 @@ public class FaixaPrecoRepository extends AbstractRepository<FaixaPreco, Long> {
 	
 	
 
-	public boolean isExist(final FaixaPreco faixapreco) {
+	public boolean isExist( FaixaPreco faixapreco) {
 		try {
 			final FaixaPreco founded = findByFaixaPreco(faixapreco);
 			return (founded != null);
@@ -42,7 +42,7 @@ public class FaixaPrecoRepository extends AbstractRepository<FaixaPreco, Long> {
 	}
 
 	@Override
-	public void delete(final FaixaPreco faixapreco) {
+	public void delete( FaixaPreco faixapreco) {
 
 		try {
 			FaixaPreco founded = this.findByFaixaPreco(faixapreco);
@@ -58,7 +58,7 @@ public class FaixaPrecoRepository extends AbstractRepository<FaixaPreco, Long> {
 
 	}
 
-	public FaixaPreco findByFaixaPreco(final FaixaPreco faixapreco)
+	public FaixaPreco findByFaixaPreco( FaixaPreco faixapreco)
 			throws SQLException {
 		FaixaPreco founded = this.getById(faixapreco.getId());
 		return founded;

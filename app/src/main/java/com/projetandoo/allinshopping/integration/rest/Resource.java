@@ -14,23 +14,23 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 public class Resource {
 	
-	private final DefaultHttpClient CLIENT;
-	private final String URL;
+	private DefaultHttpClient CLIENT;
+	private String URL;
 
 
-	public Resource(final String URL,final String username , final String password) {
+	public Resource(String URL,String username, String password) {
 		super();
 		this.URL = URL;
 		CLIENT = new DefaultHttpClient();
 		CLIENT.setCredentialsProvider(this.getCredential(username, password));		
 	}
 
-	protected CredentialsProvider getCredential(final String username , final String password) {
+	protected CredentialsProvider getCredential(String username , String password) {
 
-		final BasicCredentialsProvider provider = new BasicCredentialsProvider();
-		final AuthScope authscope = new AuthScope(AuthScope.ANY_HOST,
+		BasicCredentialsProvider provider = new BasicCredentialsProvider();
+		AuthScope authscope = new AuthScope(AuthScope.ANY_HOST,
 				AuthScope.ANY_PORT);
-		final UsernamePasswordCredentials credential = new UsernamePasswordCredentials(username, password);
+		UsernamePasswordCredentials credential = new UsernamePasswordCredentials(username, password);
 		provider.setCredentials(authscope, credential);
 		return provider;
 	}
@@ -41,7 +41,7 @@ public class Resource {
 			BufferedReader bufferedreader = null; 
 	        try {
 				bufferedreader = new BufferedReader(new InputStreamReader(stream,"ISO-8859-1"));
-				final StringBuffer buffer = new StringBuffer();
+				StringBuffer buffer = new StringBuffer();
 				String partial = null; 
 				while ((partial = bufferedreader.readLine()) != null) { 
 					buffer.append(partial);

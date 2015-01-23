@@ -17,12 +17,12 @@ import java.io.FileOutputStream;
 
 public class IntegrationProdutoRunnable implements Runnable {
 
-	private final DownloadResource download = new DownloadResource();
-	private final Produto produto;
-	private final ProdutoService service;
+	private  DownloadResource download = new DownloadResource();
+	private  Produto produto;
+	private  ProdutoService service;
 
-	public IntegrationProdutoRunnable(final Produto produto,
-			final ProdutoService produtoservice) {
+	public IntegrationProdutoRunnable( Produto produto,
+			 ProdutoService produtoservice) {
 		this.produto = produto;
 		this.service = produtoservice;
 	}

@@ -20,7 +20,7 @@ public class ImagemRepository extends AbstractRepository<Imagem, Long> {
 		return super.getDatabase().getImagemDao();
 	}
 
-	public void delete(final Produto produto) {
+	public void delete( Produto produto) {
 		try {
 			this.getDao().executeRaw("delete from imagem where produto_id = ?", Long.toString(produto.getId()));
 		} catch (SQLException e) {

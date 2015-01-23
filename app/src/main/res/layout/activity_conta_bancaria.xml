@@ -15,19 +15,20 @@
 
         <Button
             android:id="@id/salvar"
-            style="?android:attr/verticalDivider"
+
             android:layout_width="0.0dip"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:text="@string/avancar" />
+        <!--style="?android:attr/verticalDivider"-->
 
         <Button
             android:id="@id/cancelar"
-            style="?android:attr/verticalDivider"
             android:layout_width="0.0dip"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:text="@string/cancelar" />
+        <!--style="?android:attr/verticalDivider"-->
     </LinearLayout>
 
     <LinearLayout
@@ -38,31 +39,34 @@
         android:layout_alignParentTop="true"
         android:orientation="vertical" >
 
-        <EditText
+        <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@id/banco"
             android:layout_width="300.0dip"
             android:layout_height="wrap_content"
             android:hint="Banco"
             android:inputType="number"
             android:maxLength="3"
-            android:paddingTop="20.0dip" >
+            android:paddingTop="20.0dip"
+            style="@style/EditTextCadastroStyle">
 
             <requestFocus />
-        </EditText>
+        </com.rengwuxian.materialedittext.MaterialEditText>
 
-        <EditText
+        <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@id/agencia"
             android:layout_width="110.0dip"
             android:layout_height="wrap_content"
             android:hint="Agencia"
-            android:paddingTop="20.0dip" />
+            android:paddingTop="20.0dip"
+            style="@style/EditTextCadastroStyle"/>
 
-        <EditText
+        <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@id/conta"
             android:layout_width="110.0dip"
             android:layout_height="wrap_content"
             android:hint="conta"
-            android:paddingTop="20.0dip" />
+            android:paddingTop="20.0dip"
+            style="@style/EditTextCadastroStyle"/>
     </LinearLayout>
 
 </RelativeLayout>

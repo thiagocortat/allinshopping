@@ -21,7 +21,7 @@ public class CEPRepository extends AbstractRepository<CEP, Long>
 		return getDatabase().getCEPDao();
 	}
 
-	public CEP findCepByZipCode(final Long cepcode) {
+	public CEP findCepByZipCode( Long cepcode) {
 		try {
 			
 			CEP cep = getDatabase().getCEPDao()

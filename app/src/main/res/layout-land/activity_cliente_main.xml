@@ -96,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.2"
                 android:hint="CEP"
-                android:inputType="number"
+                android:inputType="text|phone"
                 android:paddingTop="20.0dip"
                 style="@style/EditTextCadastroStyle"/>
 

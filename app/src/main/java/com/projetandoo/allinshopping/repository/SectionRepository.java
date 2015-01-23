@@ -12,22 +12,22 @@ import com.projetandoo.allinshopping.models.Secao;
 public class SectionRepository extends AbstractRepository<Secao, Long>
 {
 
-    public SectionRepository(final Context context)
+    public SectionRepository( Context context)
     {
         super(context);
     }
 
     public List<Secao> getSections() throws SQLException {
     	
-        final List<Secao> secoes = getDatabase().getSecaoDao()
+        List<Secao> secoes = getDatabase().getSecaoDao()
 					        .queryBuilder()					        
 					        .where()
 					        .isNull(Secao.SECAO_PAI_FIELD_NAME)		
 					        .query();
         
-        final List<Secao> comProduto = new ArrayList<Secao>();
+        List<Secao> comProduto = new ArrayList<Secao>();
         
-        for( final Secao secao : secoes ){
+        for( Secao secao : secoes ){
         	if( secao.temProduto() ) {
         		comProduto.add(secao);
         	}

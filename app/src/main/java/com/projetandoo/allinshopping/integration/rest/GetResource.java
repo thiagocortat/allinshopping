@@ -16,9 +16,9 @@ import com.projetandoo.allinshopping.exceptions.PageNotFoundException;
 
 public class GetResource extends Resource {
 
-	private final HttpGet GET;
+	private HttpGet GET;
 
-	public GetResource(final String URL,final String username , final String password) {
+	public GetResource(String URL, String username, String password) {
 		super(URL,username,password);
 		GET = new HttpGet(URL);		
 	}
@@ -27,9 +27,9 @@ public class GetResource extends Resource {
 
 		try {
 			
-			final HttpResponse httpresponse = this.getHttpClient().execute(GET);
+			HttpResponse httpresponse = this.getHttpClient().execute(GET);
 			if (httpresponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-				final HttpEntity httpentity = httpresponse.getEntity();
+				HttpEntity httpentity = httpresponse.getEntity();
 				if (httpentity == null) {
 					throw new IntegrationException(String.format(
 							"Ocorreu um erro no processamento no endereço %s",

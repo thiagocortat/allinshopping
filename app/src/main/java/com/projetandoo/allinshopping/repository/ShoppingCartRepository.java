@@ -20,9 +20,9 @@ import com.projetandoo.allinshopping.models.Pedido;
 public class ShoppingCartRepository extends AbstractRepository
 {
 
-    private final Dao<ItemPedido,Long> ITEM_DAO;
-    private final Dao<DadosPagamento, Long> PAGTO_DAO;
-    private final Dao<Pedido,Long> PEDIDO_DAO;
+    private  Dao<ItemPedido,Long> ITEM_DAO;
+    private  Dao<DadosPagamento, Long> PAGTO_DAO;
+    private  Dao<Pedido,Long> PEDIDO_DAO;
 
     public ShoppingCartRepository(Context context)
     {

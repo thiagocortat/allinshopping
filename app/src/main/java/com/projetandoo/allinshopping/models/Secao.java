@@ -39,7 +39,7 @@ public class Secao
     private Secao secaoPai;
     
     @ForeignCollectionField(eager=true)
-    private final Collection<Secao> subsecoes = new ArrayList<Secao>();
+    private Collection<Secao> subsecoes = new ArrayList<Secao>();
 
 	public Secao() {
 		super();
@@ -112,8 +112,8 @@ public class Secao
 
     public List<Produto> getProdutos()
     {
-		final List<Produto> produtos = new ArrayList<Produto>();
-		for (final Secao secao : subsecoes) {
+		List<Produto> produtos = new ArrayList<Produto>();
+		for (Secao secao : subsecoes) {
         	produtos.addAll(secao.getProdutos());
         }
         produtos.addAll(this.produtos);
@@ -127,8 +127,8 @@ public class Secao
 
     public Collection<Secao> getSubSecoes()
     {
-    	final Collection<Secao> subsecoes = new ArrayList<Secao>();
-		for (final Secao secao : this.subsecoes) {
+    	Collection<Secao> subsecoes = new ArrayList<Secao>();
+		for (Secao secao : this.subsecoes) {
     		if( secao.temProduto() ) {
     			subsecoes.add(secao);
     		}
@@ -147,12 +147,12 @@ public class Secao
         return titulo;
     }
 
-	public void setNome(final String nome)
+	public void setNome(String nome)
     {
 		this.nome = nome;
     }
 
-	public void setSecaoPai(final Secao secao)
+	public void setSecaoPai(Secao secao)
     {
 		this.secaoPai = secao;
     }

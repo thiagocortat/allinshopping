@@ -8,18 +8,19 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin" >
 
-    <EditText
+    <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@id/email"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="E-mail"
-            android:inputType="textEmailAddress" android:layout_marginTop="20dp">
+            android:inputType="textEmailAddress" android:layout_marginTop="20dp"
+        style="@style/EditTextCadastroStyle">
 
         <requestFocus />
-    </EditText>
+    </com.rengwuxian.materialedittext.MaterialEditText>
 
-    <EditText
+    <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@id/password"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -28,7 +29,8 @@
             android:layout_marginTop="78.0dip"
             android:ems="10"
             android:hint="Senha"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+        style="@style/EditTextCadastroStyle"/>
 
     <LinearLayout
             android:id="@id/linear_item"

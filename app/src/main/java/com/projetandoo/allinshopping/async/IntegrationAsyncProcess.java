@@ -18,6 +18,7 @@ import com.projetandoo.allinshopping.alerts.ActionDialog;
 import com.projetandoo.allinshopping.exceptions.IntegrationException;
 import com.projetandoo.allinshopping.exceptions.NoUniqueRegistryException;
 import com.projetandoo.allinshopping.services.ConfigurationService;
+import com.projetandoo.allinshopping.utilities.StringUtils;
 
 public class IntegrationAsyncProcess extends AsyncTask<Void, String, String> {
 	
@@ -45,59 +46,70 @@ public class IntegrationAsyncProcess extends AsyncTask<Void, String, String> {
     @Override
 	protected String doInBackground(Void... avoid)
     {
+        String message = "";
+
+        IntegrationProcess integration = new IntegrationProcess(email, password, this.context);
         try {
+            Log.d("com.projetandoo.allinshopping.async", "Enviando os novos pedidos para o backoffice");
+            integration.enviarPedido();
+        }catch (Exception e) { message = " enviarPedido() "; }
 
-        	IntegrationProcess integration = new IntegrationProcess(email,password,this.context);
-
-			Log.d("com.projetandoo.allinshopping.async","Enviando os novos pedidos para o backoffice");
-
-			integration.enviarPedido();
-
+        try {
             Log.d("com.projetandoo.allinshopping.async","Recebendo a lista de meios de pagamento");
-
             integration.importarFormasPagamento();
+        }catch (Exception e) { message += " importarFormasPagamento() " ; }
 
-			Log.d("com.projetandoo.allinshopping.async","Recebendo a lista de Estados do backoffice");
-
+        try {
+            Log.d("com.projetandoo.allinshopping.async","Recebendo a lista de Estados do backoffice");
             integration.importarEstado();
-			
-			Log.d("com.projetandoo.allinshopping.async","Recebendo a lista de departamentos do backoffice");
+        }catch (Exception e) { message += " importarEstado() "; }
 
+        try {
+            Log.d("com.projetandoo.allinshopping.async","Recebendo a lista de departamentos do backoffice");
             integration.importarSecao();
-			
-			Log.d("com.projetandoo.allinshopping.async","Recebendo a lista de produtos do backoffice");
+        }catch (Exception e) { message += " importarSecao() " ; }
 
+        try {
+            Log.d("com.projetandoo.allinshopping.async","Recebendo a lista de produtos do backoffice");
             integration.importarProdutos();
-			
-			Log.d("com.projetandoo.allinshopping.async","Recebendo a lista de clientes do backoffice");
+        }catch (Exception e) { message += " importarProdutos() " ; }
 
+        try {
+            Log.d("com.projetandoo.allinshopping.async","Recebendo a lista de clientes do backoffice");
             integration.importarCliente();
-			
-			Log.d("com.projetandoo.allinshopping.async","Recebendo a tabela de preços de frete do backoffice");
+        }catch (Exception e) { message += " importarCliente() " ; }
 
-			integration.importarCEP();
-			
-			service.atualizar();
+        try {
+            Log.d("com.projetandoo.allinshopping.async","Recebendo a tabela de preços de frete do backoffice");
+            integration.importarCEP();
+        }catch (Exception e) { message += " importarCEP() " ; }
 
-			return "Dados importados com sucesso";
+
+        if (StringUtils.isEmpty(message)) {
+            service.atualizar();
+            return "Dados importados com sucesso";
+        }
+        else {
+            return "Ocorreu erros de atualização nos serviços de: " + message;
+        }
 			
-		} catch (IntegrationException e) {
-			Log.e("com.projetandoo.allinshopping.async","Erro no carga do tablet",e);
-			return e.getMessage();
-		} catch (JSONException e) {
-			Log.e("com.projetandoo.allinshopping.async","Erro na conversão dos valores recebidos do servidor",e);
-			return e.getMessage();
-		} catch (NoUniqueRegistryException e) {
-			Log.e("com.projetandoo.allinshopping.async","Erro no salvamento dos dados no tablet",e);
-			return e.getMessage();
-		} catch (Exception e) {
-			Log.e("com.projetandoo.allinshopping.async","Erro desconhecido",e);
-			return e.getMessage();
-		}
+//		} catch (IntegrationException e) {
+//			Log.e("com.projetandoo.allinshopping.async","Erro no carga do tablet",e);
+//			return e.getMessage();
+//		} catch (JSONException e) {
+//			Log.e("com.projetandoo.allinshopping.async","Erro na conversão dos valores recebidos do servidor",e);
+//			return e.getMessage();
+//		} catch (NoUniqueRegistryException e) {
+//			Log.e("com.projetandoo.allinshopping.async","Erro no salvamento dos dados no tablet",e);
+//			return e.getMessage();
+//		} catch (Exception e) {
+//			Log.e("com.projetandoo.allinshopping.async","Erro desconhecido",e);
+//			return e.getMessage();
+//		}
     }
 
 	@Override
-	protected void onPostExecute(final String message) {
+	protected void onPostExecute(String message) {
 		super.onPostExecute(message);
 
         if (progress.isShowing()) {

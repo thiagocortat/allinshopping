@@ -89,7 +89,7 @@ public class Cliente extends ValidationConstraint
 
     public JSONObject toJSON()
             throws JSONException {
-        final JSONObject jsonobject = new JSONObject();
+        JSONObject jsonobject = new JSONObject();
         jsonobject.put("nome", getNomeCompleto());
         jsonobject.put("sobrenome", getNomeCompleto());
         jsonobject.put("email", getEmail());
@@ -125,7 +125,7 @@ public class Cliente extends ValidationConstraint
 
     }
 
-    public void setId(final Long id) {
+    public void setId(Long id) {
         this.internalId = id;
     }
 
@@ -133,7 +133,7 @@ public class Cliente extends ValidationConstraint
         return this.endereco;
     }
 
-    public void setEndereco(final Endereco endereco) {
+    public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
 
@@ -153,11 +153,11 @@ public class Cliente extends ValidationConstraint
         this.ultimoNome = ultimoNome;
     }
 
-    public void setDataNascimento(final Date dataNascimento) {
+    public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
-    public void setEmail(final String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 }

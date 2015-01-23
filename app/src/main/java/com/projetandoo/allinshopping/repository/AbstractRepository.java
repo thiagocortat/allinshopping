@@ -14,10 +14,10 @@ import com.projetandoo.allinshopping.exceptions.DatabaseOperationException;
 public abstract class AbstractRepository<E,T>
 {
 
-    private final DbHelper helper;
+    private DbHelper helper;
     private int count;
 
-    public AbstractRepository(final Context context)
+    public AbstractRepository(Context context)
     {
         this.helper = DbHelperFactory.getDbHelper(context);
     }
@@ -32,7 +32,7 @@ public abstract class AbstractRepository<E,T>
         return helper;
     }
 
-    public void insert(final E e) {    	    	
+    public void insert(E e) {
     	try {
 			this.getDao().create(e);
 		} catch (SQLException sqlexp) {
@@ -40,7 +40,7 @@ public abstract class AbstractRepository<E,T>
 		}
     }
     
-    public void update(final E e){
+    public void update( E e){
     	try {
 			this.getDao().update(e);
 		} catch (SQLException sqlexp) {
@@ -48,7 +48,7 @@ public abstract class AbstractRepository<E,T>
 		}
     }
     
-    public void delete(final E e){
+    public void delete( E e){
     	try {
 			this.getDao().delete(e);
 		} catch (SQLException sqlexp) {
@@ -56,7 +56,7 @@ public abstract class AbstractRepository<E,T>
 		}
     }
     
-    public E getById(final T id) {
+    public E getById( T id) {
     	try {
 
     		if( id == null ) {

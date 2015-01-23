@@ -17,7 +17,7 @@ public class HomeActivity extends AbstractActivity implements OnClickListener {
 	private Secao secao;
 	private ListView secoes;
 	private ListView produtos;
-	private final AQuery aq = new AQuery(this);
+	private AQuery aq = new AQuery(this);
 	
 	@Override
 	protected void onCreate(final Bundle bundle) {
@@ -81,7 +81,7 @@ public class HomeActivity extends AbstractActivity implements OnClickListener {
 			    	  .execute();
 	}
 
-	public void setTitulo(final String titulo) {
+	public void setTitulo(String titulo) {
 		aq.id(R.id.promocao).text(titulo);
 	}
 	
@@ -93,7 +93,7 @@ public class HomeActivity extends AbstractActivity implements OnClickListener {
 		return this.secao;
 	}
 
-	public void setBoneca(final int image) {
+	public void setBoneca(int image) {
 		aq.id(R.id.boneca).image(image);
 		
 	}
