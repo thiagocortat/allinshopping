@@ -30,13 +30,13 @@ public abstract class AbstractDownload<E> implements Download<E> {
 //	private final ResourceBundle bundle = ResourceBundle
 //			.getBundle("integration");
 	
-	private final GetResource GET;
+	private GetResource GET;
 
-	private final String url;
+	private String url;
 
-	private final String username;
+	private String username;
 
-	private final String password;
+	private String password;
 	
 	@SuppressWarnings("unchecked")
 	public AbstractDownload(String username, String password) {
@@ -54,8 +54,8 @@ public abstract class AbstractDownload<E> implements Download<E> {
 		GET = new GetResource(url,username,password);
 	}
 
-	protected List<E> toList(final Object json) {
-		final Gson gson = new GsonBuilder().create();
+	protected List<E> toList( Object json) {
+		 Gson gson = new GsonBuilder().create();
 		return this.toList(gson, json);
 	}
 
@@ -67,7 +67,7 @@ public abstract class AbstractDownload<E> implements Download<E> {
 	public List<E> list() throws IntegrationException {
 
 		try {
-			final JSONObject json = GET.getJSON();
+			 JSONObject json = GET.getJSON();
 
 			return toList(json.get("list"));
 
@@ -80,7 +80,7 @@ public abstract class AbstractDownload<E> implements Download<E> {
 	}
 
 	@SuppressWarnings("unchecked")
-	protected List<E> toList(final Gson gson, final Object json) {
+	protected List<E> toList( Gson gson,  Object json) {
 		List<E> elements = null; 
 		if (json instanceof JSONArray) {
 			elements = Arrays.asList((E[]) gson.fromJson(json.toString(), Array

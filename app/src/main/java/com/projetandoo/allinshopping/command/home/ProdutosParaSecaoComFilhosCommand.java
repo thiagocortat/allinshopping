@@ -11,18 +11,18 @@ import com.projetandoo.allinshopping.models.Secao;
 
 public class ProdutosParaSecaoComFilhosCommand implements Command {
 	
-	private final Secao TODOS = new Secao("Todos");
+	private Secao TODOS = new Secao("Todos");
 	
-	private final HomeActivity home;
+	private HomeActivity home;
 
-	public ProdutosParaSecaoComFilhosCommand(final HomeActivity home) {
+	public ProdutosParaSecaoComFilhosCommand(HomeActivity home) {
 		this.home = home;
 	}
 
 	@Override
 	public Command execute() {
 
-		final List<Secao> secoes = new ArrayList<Secao>(
+		List<Secao> secoes = new ArrayList<Secao>(
 				home.getSecao().getSubSecoes());
 		TODOS.setSecaoPai(home.getSecao().getSecaoPai());
 		TODOS.addProdutos(home.getSecao().getProdutos());

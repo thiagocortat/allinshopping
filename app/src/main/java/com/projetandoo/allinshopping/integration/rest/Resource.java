@@ -35,12 +35,12 @@ public class Resource {
 		return provider;
 	}
 	
-	protected String toString(final InputStream stream)
+	protected String toString(InputStream stream)
 	        throws IOException
 	    {
 			BufferedReader bufferedreader = null; 
 	        try {
-				bufferedreader = new BufferedReader(new InputStreamReader(stream,"ISO-8859-1"));
+				bufferedreader = new BufferedReader(new InputStreamReader(stream,"UTF-8"));
 				StringBuffer buffer = new StringBuffer();
 				String partial = null; 
 				while ((partial = bufferedreader.readLine()) != null) { 

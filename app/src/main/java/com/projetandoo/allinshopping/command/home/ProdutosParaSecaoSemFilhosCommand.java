@@ -6,16 +6,16 @@ import com.projetandoo.allinshopping.command.Command;
 
 public class ProdutosParaSecaoSemFilhosCommand implements Command {
 
-	private final HomeActivity home;
+	private HomeActivity home;
 
-	public ProdutosParaSecaoSemFilhosCommand(final HomeActivity home) {
+	public ProdutosParaSecaoSemFilhosCommand(HomeActivity home) {
 		this.home = home;
 	}
 
 	@Override
 	public Command execute() {
 		
-		final ProdutoAdapter produtoadapter = new ProdutoAdapter(home,
+		ProdutoAdapter produtoadapter = new ProdutoAdapter(home,
 				home.getSecao().getProdutos());
 		home.getProdutos().setAdapter(produtoadapter);
 		home.exibirBoneca(false);

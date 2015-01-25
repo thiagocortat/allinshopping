@@ -69,7 +69,8 @@ public class ProdutoAdapter extends ArrayAdapter<Produto>
         Picasso.with(activity).load(uri).skipMemoryCache()
                 .into(viewHolder.imagem);
 
-        viewHolder.adicionar.setTag(produto);
+
+
         viewHolder.titulo.setText(produto.getTitulo());
         viewHolder.descricao.setText(produto.getDescricao());
         viewHolder.preco.setText(ParseUtilities.formatMoney(produto.getPrecoVenda()));
@@ -93,7 +94,10 @@ public class ProdutoAdapter extends ArrayAdapter<Produto>
             viewHolder.tamanho.setVisibility(View.GONE);
         }
 
+        viewHolder.imagem.setTag(produto.getDefaultImage());
+        viewHolder.imagem.setOnClickListener(new AbrirImagemOnClickEvent());
 
+        viewHolder.adicionar.setTag(produto);
         viewHolder.adicionar.setOnClickListener(this);
 
         return view;
@@ -101,13 +105,13 @@ public class ProdutoAdapter extends ArrayAdapter<Produto>
 
     @Override
     public void onClick(View view) {
-        final Produto produto = (Produto) view.getTag();
-        final Context context = getContext();
-        final Activity activity = (Activity) getContext();
-        final Intent intent = new Intent(context, ShoppingCartActivity.class);
-        final Pedido pedido = PriceUtilities.getPedido();
+        Produto produto = (Produto) view.getTag();
+        Context context = getContext();
+//        final Activity activity = (Activity) getContext();
+        Intent intent = new Intent(context, ShoppingCartActivity.class);
+        Pedido pedido = PriceUtilities.getPedido();
 
-        final Atributo atributo = getAtributo((View) view.getParent());
+        Atributo atributo = getAtributo((View) view.getParent());
 
         if (produto.temAtributos() && atributo == null) {
 

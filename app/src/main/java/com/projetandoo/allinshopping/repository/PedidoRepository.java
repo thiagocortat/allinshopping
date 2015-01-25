@@ -51,13 +51,15 @@ public class PedidoRepository extends AbstractRepository<Pedido, Long> {
 
                 List<ItemPedido> itens = new ArrayList<ItemPedido>();
                 itens.addAll(pedido.getItens());
-                Collections.sort(itens, new Comparator<ItemPedido>() {
-
-                    @Override
-                    public int compare(ItemPedido lhs, ItemPedido rhs) {
-                        return lhs.getProduto().getIdLoja().compareTo(rhs.getProduto().getIdLoja());
-                    }
-                });
+                //TODO:Resolver esse Bug Mandito
+                //TODO: getIdLoja() sempre retorna null
+//                Collections.sort(itens, new Comparator<ItemPedido>() {
+//
+//                    @Override
+//                    public int compare(ItemPedido lhs, ItemPedido rhs) {
+//                        return lhs.getProduto().getIdLoja().compareTo(rhs.getProduto().getIdLoja());
+//                    }
+//                });
                 pedido.setItens(itens);
 
             }

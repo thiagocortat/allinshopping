@@ -101,16 +101,20 @@ public class HomeActivity extends AbstractActivity implements OnClickListener {
 	public void exibirBoneca(boolean show) {
 		if(show) {
 			aq.id(R.id.boneca).visible();
+            aq.id(R.id.promocoes).invisible();
 		} else {
 			aq.id(R.id.boneca).invisible();
+            aq.id(R.id.promocoes).visible();
 		}
 	}
 
 	public void exibirListaProdutos(boolean show) {
 		if(show) {
 			aq.id(R.id.promocoes).visible();
+            aq.id(R.id.boneca).invisible();
 		} else {
 			aq.id(R.id.promocoes).invisible();
+            aq.id(R.id.boneca).visible();
 		}
 		
 	}

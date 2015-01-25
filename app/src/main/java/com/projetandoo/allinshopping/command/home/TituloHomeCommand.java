@@ -5,9 +5,9 @@ import com.projetandoo.allinshopping.command.Command;
 
 public class TituloHomeCommand implements Command {
 
-	private final HomeActivity home;
+	private HomeActivity home;
 
-	public TituloHomeCommand(final HomeActivity home) {
+	public TituloHomeCommand(HomeActivity home) {
 		this.home = home;
 	}
 

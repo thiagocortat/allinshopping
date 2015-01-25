@@ -20,9 +20,9 @@ import com.projetandoo.allinshopping.exceptions.InternalServerException;
 import com.projetandoo.allinshopping.exceptions.PageNotFoundException;
 
 public class PostResource extends Resource {
-	private final HttpPost POST;
+	private HttpPost POST;
 
-	public PostResource(final String URL, final String username,
+	public PostResource(String URL, String username,
 			final String password) {
 		super(URL, username, password);
 		this.POST = new HttpPost(URL);
@@ -33,13 +33,13 @@ public class PostResource extends Resource {
 			throws IntegrationException {
 		 
 		try {
-			final StringEntity stringentity = new StringEntity(json);
-			final BasicHeader basicheader = new BasicHeader("Content-Type",
+			StringEntity stringentity = new StringEntity(json);
+			BasicHeader basicheader = new BasicHeader("Content-Type",
 					"application/json");
 			stringentity.setContentType(basicheader);
 			POST.setEntity(stringentity);
-			final HttpResponse httpresponse = this.getHttpClient().execute(POST);
-            final HttpEntity httpentity = httpresponse.getEntity();
+			HttpResponse httpresponse = this.getHttpClient().execute(POST);
+            HttpEntity httpentity = httpresponse.getEntity();
 			if (httpresponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
 
 				if (httpentity == null) {

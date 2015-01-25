@@ -36,7 +36,7 @@ public class ClienteDialog extends AbstractDialog {
                 Intent intent = new Intent(context, ClienteActivity.class);
                 intent.putExtra(Constante.PEDIDO, pedido);
                 context.startActivity(intent);
-                context.finish();
+//                context.finish();
 
             }
         });
@@ -50,7 +50,7 @@ public class ClienteDialog extends AbstractDialog {
                 Intent intent = new Intent(context, ListClientesActivity.class);
                 intent.putExtra(Constante.PEDIDO, pedido);
                 context.startActivity(intent);
-                context.finish();
+//                context.finish();
 
             }
         });

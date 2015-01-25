@@ -38,7 +38,7 @@ public class ListClientesActivity extends AbstractActivity
             Intent intent = new Intent(this, ClienteActivity.class);
             intent.putExtra(Constante.PEDIDO, getPedido());
             startActivity(intent);
-//            this.finish();
+            this.finish();
         }
     }
 

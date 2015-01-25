@@ -68,6 +68,7 @@ public class PagamentoActivity extends AbstractActivity
         RadioGroup radiogroup = (RadioGroup) findViewById(R.id.formapagamento);
         List<FormaPagamento> formasPagamento = new FormaPagamentoRepository(this).list();
 
+        int i = 0;
         for (FormaPagamento forma : formasPagamento) {
             RadioButton radiobutton = new RadioButton(this);
             radiobutton.setId(forma.getId().intValue());
@@ -75,6 +76,10 @@ public class PagamentoActivity extends AbstractActivity
             radiobutton.setText(forma.getNome());
             radiobutton.setHint(forma.getNome());
             radiogroup.addView(radiobutton);
+            if (i == 0) {
+                radiobutton.setChecked(true);
+            }
+            i++;
         }
         aq.id(R.id.total_pedido).text(ParseUtilities.formatMoney(pedido.getTotal()));
         aq.id(R.id.salvar).clicked(this);
@@ -82,7 +87,7 @@ public class PagamentoActivity extends AbstractActivity
 
     }
 
-    public void setFormaPagamento(final FormaPagamento formaPagamento) {
+    public void setFormaPagamento(FormaPagamento formaPagamento) {
         RadioGroup radio = (RadioGroup)findViewById(R.id.formapagamento);
         radio.check(formaPagamento.getId().intValue());
     }

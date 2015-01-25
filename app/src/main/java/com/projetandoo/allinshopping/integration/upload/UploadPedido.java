@@ -13,20 +13,20 @@ import static java.lang.String.format;
 
 public class UploadPedido extends AbstractUpload<Pedido>{
 
-    public UploadPedido(final String username, final String password) {
+    public UploadPedido(String username, String password) {
         super(password, username);
     }
 
     @Override
-    public void send(final Pedido pedido) throws IntegrationException {
+    public void send(Pedido pedido) throws IntegrationException {
         try {
 
-            final JSONObject json = new JSONObject(super.toJSONString(pedido));
-            final Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation()
+            JSONObject json = new JSONObject(super.toJSONString(pedido));
+            Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation()
                                                .create();
-            final JSONArray itens = new JSONArray();
+            JSONArray itens = new JSONArray();
 
-            for(final ItemPedido i : pedido.getItens()){
+            for(ItemPedido i : pedido.getItens()){
                     JSONObject item = new JSONObject(gson.toJson(i));
                     itens.put(format("{ \"item\" :%s }",item.toString()));
             }
