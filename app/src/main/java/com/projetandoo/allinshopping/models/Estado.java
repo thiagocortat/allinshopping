@@ -28,7 +28,7 @@ public class Estado implements Serializable {
 	public Estado() {
 	}
 
-	public Estado(final String uf, final String nome) {
+	public Estado(String uf, String nome) {
 		this();
 		this.uf = uf;
 		this.nome = nome;
@@ -46,11 +46,11 @@ public class Estado implements Serializable {
 		return uf;
 	}
 
-	public void setNome(final String nome) {
+	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
-	public void setUf(final String uf) {
+	public void setUf(String uf) {
 		this.uf = uf;
 	}
 
@@ -60,9 +60,9 @@ public class Estado implements Serializable {
 	}
 
 	@Override
-	public boolean equals(final Object o) {
+	public boolean equals(Object o) {
 		if (o instanceof Estado) {
-			final Estado estado = (Estado) o;
+			Estado estado = (Estado) o;
 			return this.uf.equalsIgnoreCase(estado.uf);
 		} else {
 			return false;
@@ -74,7 +74,7 @@ public class Estado implements Serializable {
 		return (this.uf.hashCode() * 32) >> 4;
 	}
 
-	public void setId(final long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

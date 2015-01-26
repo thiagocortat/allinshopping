@@ -63,11 +63,11 @@ public class Produto implements Serializable {
 
     @SerializedName("imagens")
 	@ForeignCollectionField(eager=true)
-    private final Collection<Imagem> imagens = new ArrayList<Imagem>();
+    private Collection<Imagem> imagens = new ArrayList<Imagem>();
 
     @SerializedName("atributos")
 	@ForeignCollectionField(eager=true,orderColumnName = Atributo.DESCRICAO_FIELD_NAME)
-	private final Collection<Atributo> atributos = new ArrayList<Atributo>();
+	private Collection<Atributo> atributos = new ArrayList<Atributo>();
 
 	public Produto() {
 		super();
@@ -155,7 +155,7 @@ public class Produto implements Serializable {
 		return id.hashCode();
 	}
 
-	public void setId(final Long id) {
+	public void setId( Long id) {
 		this.id = id;
 	}
 	

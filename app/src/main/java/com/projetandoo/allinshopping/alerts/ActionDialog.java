@@ -20,6 +20,7 @@ public class ActionDialog extends AbstractDialog {
             public void onClick(DialogInterface dialog, int which) {
                 Activity current = (Activity) getContext();
                 Intent intent = new Intent(current, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 current.startActivity(intent);
                 current.finish();
 

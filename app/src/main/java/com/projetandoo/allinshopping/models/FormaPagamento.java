@@ -29,7 +29,7 @@ public class FormaPagamento
     public FormaPagamento() {
     }
 
-    public FormaPagamento(final Long id, final String nome) {
+    public FormaPagamento(Long id, String nome) {
         this();
         this.id = id;
         this.nome = nome;
@@ -43,11 +43,11 @@ public class FormaPagamento
         return nome;
     }
 
-    public void setNome(final String nome) {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public void setId(final Long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 }

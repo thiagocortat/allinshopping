@@ -11,6 +11,7 @@ import com.j256.ormlite.misc.TransactionManager;
 import com.projetandoo.allinshopping.exceptions.IntegrationException;
 import com.projetandoo.allinshopping.exceptions.NoUniqueRegistryException;
 import com.projetandoo.allinshopping.models.Cliente;
+import com.projetandoo.allinshopping.models.Endereco;
 import com.projetandoo.allinshopping.repository.ClienteRepository;
 import com.projetandoo.allinshopping.repository.EnderecoRepository;
 
@@ -32,13 +33,25 @@ public class ClienteService {
 		return CLIENTE_DAO.listToBeSend();
 	}
 
+    public List<Endereco> listAddress() throws IntegrationException {
+        return ENDERECO_DAO.getAll();
+    }
+
 	public Cliente save(Cliente cliente) throws NoUniqueRegistryException {
-		if (!CLIENTE_DAO.exists(cliente)
-				&& (cliente.getId() == null || cliente.getId() == 0L)) {
-			CLIENTE_DAO.insert(cliente);
-		} else if (cliente.getId() > 0L) {
-			this.update(cliente);
-		} else {
+        if (!CLIENTE_DAO.exists(cliente)
+                && (cliente.getId() == null || cliente.getId() == 0L)) {
+
+            ENDERECO_DAO.insert(cliente.getEndereco());
+            CLIENTE_DAO.insert(cliente);
+
+        }
+        else if (cliente.getId() != null && cliente.getId() > 0L) {
+            this.update(cliente);
+        }
+        else if (cliente.getBackofficeId() != null && cliente.getBackofficeId() > 0L) {
+            this.update(cliente);
+		}
+        else {
 			throw new NoUniqueRegistryException(
 					"Não foi possível salvar o cliente. Já existe outro cadastrado com o mesmo CPF ou E-mail");
 		}

@@ -52,37 +52,37 @@ public class IntegrationAsyncProcess extends AsyncTask<Void, String, String> {
         try {
             Log.d("com.projetandoo.allinshopping.async", "Enviando os novos pedidos para o backoffice");
             integration.enviarPedido();
-        }catch (Exception e) { message = " enviarPedido() "; }
+        }catch (Exception e) { message = " enviarPedido() \n" +  e.getMessage(); }
 
         try {
             Log.d("com.projetandoo.allinshopping.async","Recebendo a lista de meios de pagamento");
             integration.importarFormasPagamento();
-        }catch (Exception e) { message += " importarFormasPagamento() " ; }
+        }catch (Exception e) { message += " importarFormasPagamento() \n" + e.getMessage(); }
 
         try {
             Log.d("com.projetandoo.allinshopping.async","Recebendo a lista de Estados do backoffice");
             integration.importarEstado();
-        }catch (Exception e) { message += " importarEstado() "; }
+        }catch (Exception e) { message += " importarEstado() \n" + e.getMessage(); }
 
         try {
             Log.d("com.projetandoo.allinshopping.async","Recebendo a lista de departamentos do backoffice");
             integration.importarSecao();
-        }catch (Exception e) { message += " importarSecao() " ; }
+        }catch (Exception e) { message += " importarSecao() \n" + e.getMessage(); }
 
         try {
             Log.d("com.projetandoo.allinshopping.async","Recebendo a lista de produtos do backoffice");
             integration.importarProdutos();
-        }catch (Exception e) { message += " importarProdutos() " ; }
+        }catch (Exception e) { message += " importarProdutos() \n" + e.getMessage(); }
 
         try {
             Log.d("com.projetandoo.allinshopping.async","Recebendo a lista de clientes do backoffice");
-            integration.importarCliente();
-        }catch (Exception e) { message += " importarCliente() " ; }
+           integration.importarCliente();
+        }catch (Exception e) { message += " importarCliente() \n" + e.getMessage() ; }
 
         try {
             Log.d("com.projetandoo.allinshopping.async","Recebendo a tabela de preços de frete do backoffice");
             integration.importarCEP();
-        }catch (Exception e) { message += " importarCEP() " ; }
+        }catch (Exception e) { message += " importarCEP() \n" + e.getMessage(); }
 
 
         if (StringUtils.isEmpty(message)) {

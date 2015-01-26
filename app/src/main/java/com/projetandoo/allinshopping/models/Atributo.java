@@ -31,7 +31,7 @@ public class Atributo implements Serializable {
 	@DatabaseField(columnName = Atributo.PRODUTO_FIELD_NAME, foreign = true, foreignAutoRefresh = true)
 	private Produto produto;
 
-	public void setProduto(final Produto produto) {
+	public void setProduto(Produto produto) {
 		this.produto = produto;		
 	}
 	

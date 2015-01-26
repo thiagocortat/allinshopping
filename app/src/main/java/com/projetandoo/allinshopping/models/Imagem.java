@@ -35,7 +35,7 @@ public class Imagem implements Serializable {
 	@DatabaseField(columnName = Imagem.PRODUTO_FIELD_NAME, foreign = true, foreignAutoRefresh = true)
 	private Produto produto;
 
-	public void setProduto(final Produto produto) {
+	public void setProduto(Produto produto) {
 		this.produto = produto;
 	}
 
@@ -51,12 +51,12 @@ public class Imagem implements Serializable {
 		return id;
 	}
 
-	public void setFileName(final String imagepath) {
+	public void setFileName(String imagepath) {
 		this.fileName = imagepath;
 	}
 
 	public void apagar() {
-		final File imagem = new File(this.fileName);
+		File imagem = new File(this.fileName);
 		imagem.delete();
 		
 	}

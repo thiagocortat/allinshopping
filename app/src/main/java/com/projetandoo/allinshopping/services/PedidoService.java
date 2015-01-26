@@ -54,9 +54,15 @@ public class PedidoService {
                 .getIntegration(IntegrationType.PRESTASHOP)
                 .getUpload(ResourceType.PEDIDO);
         for ( Pedido pedido : pedidos) {
-            upload.send(pedido);
-            pedido.enviado();
-            PEDIDO_REPOSITORY.update(pedido);
+
+            try {
+                upload.send(pedido);
+                pedido.enviado();
+                PEDIDO_REPOSITORY.update(pedido);
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+
         }
 
     }

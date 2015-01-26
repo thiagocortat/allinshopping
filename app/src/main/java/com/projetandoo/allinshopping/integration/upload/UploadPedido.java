@@ -2,6 +2,7 @@ package com.projetandoo.allinshopping.integration.upload;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import com.projetandoo.allinshopping.exceptions.IntegrationException;
 import com.projetandoo.allinshopping.models.ItemPedido;
 import com.projetandoo.allinshopping.models.Pedido;
@@ -28,7 +29,12 @@ public class UploadPedido extends AbstractUpload<Pedido>{
 
             for(ItemPedido i : pedido.getItens()){
                     JSONObject item = new JSONObject(gson.toJson(i));
-                    itens.put(format("{ \"item\" :%s }",item.toString()));
+                JSONObject itemName = new JSONObject();
+                itemName.put("item", item);
+                itens.put(itemName);
+//                    itens.put(format("{ \"item\" :%s }",item.toString()));//Eu acho que é neste pedaço aqui. provalemte não está escapando
+//                itens.put(format("{ \"item\" :%s }",item.toString()));//Eu acho que é neste pedaço aqui. provalemte não está escapando
+////                itens.put(item);
             }
 
             json.getJSONObject("pedido").put("itens",itens);

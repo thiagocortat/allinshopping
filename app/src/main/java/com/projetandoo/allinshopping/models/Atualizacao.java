@@ -25,7 +25,7 @@ public class Atualizacao implements Serializable {
 		return id;
 	}
 
-	public void setId(final Long id) { 
+	public void setId( Long id) {
 		this.id = id;
 	}
 
@@ -33,7 +33,7 @@ public class Atualizacao implements Serializable {
 		return dataAtualizacao;
 	}
 
-	public void setDataAtualizacao(final Date dataAtualizacao) {
+	public void setDataAtualizacao( Date dataAtualizacao) {
 		this.dataAtualizacao = dataAtualizacao;
 	}
 	

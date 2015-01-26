@@ -32,6 +32,8 @@ public class ClienteActivity extends AbstractActivity
     private AQuery aq;
     private Long id = 0L;
 
+    private Cliente mCliente;
+
     private void loadFromCliente(Cliente cliente) {
 
         this.setId(cliente.getId());
@@ -123,21 +125,26 @@ public class ClienteActivity extends AbstractActivity
 
     private Cliente createCliente() {
 
-        final Cliente cliente = new Cliente();
-        cliente.setId(this.id);
-        cliente.setDataNascimento(getDataNascimento());
-        cliente.setEmail(this.getEmail());
-        cliente.setPrimeiroNome(this.getPrimeiroNome());
-        cliente.setUltimoNome(this.getUltimoNome());
-        cliente.setEndereco(new Endereco());
-        cliente.getEndereco().setEstado(this.getEstado());
-        cliente.getEndereco().setTelefone(getTelefone());
-        cliente.getEndereco().setCelular(getCelular());
-        cliente.getEndereco().setCep(this.getCep());
-        cliente.getEndereco().setBairro(this.getBairro());
-        cliente.getEndereco().setCidade(this.getCidade());
-        cliente.getEndereco().setLogradouro(this.getEndereco());
-        return cliente;
+        if (mCliente == null)
+            mCliente = new Cliente();
+        if (mCliente.getId() == null || mCliente.getId() == 0)
+            mCliente.setId(this.id);
+        if (mCliente.getEndereco() == null)
+            mCliente.setEndereco(new Endereco());
+
+        mCliente.setDataNascimento(getDataNascimento());
+        mCliente.setEmail(this.getEmail());
+        mCliente.setPrimeiroNome(this.getPrimeiroNome());
+        mCliente.setUltimoNome(this.getUltimoNome());
+
+        mCliente.getEndereco().setEstado(this.getEstado());
+        mCliente.getEndereco().setTelefone(getTelefone());
+        mCliente.getEndereco().setCelular(getCelular());
+        mCliente.getEndereco().setCep(this.getCep());
+        mCliente.getEndereco().setBairro(this.getBairro());
+        mCliente.getEndereco().setCidade(this.getCidade());
+        mCliente.getEndereco().setLogradouro(this.getEndereco());
+        return mCliente;
 
     }
 
@@ -178,11 +185,11 @@ public class ClienteActivity extends AbstractActivity
         }
     }
 
-    public void setPrimeiroNome(final String primeiroNome) {
+    public void setPrimeiroNome(String primeiroNome) {
         aq.id(R.id.primeiroNome).text(primeiroNome);
     }
 
-    public void setUltimoNome(final String ultimoNome) {
+    public void setUltimoNome(String ultimoNome) {
         aq.id(R.id.ultimoNome).text(ultimoNome);
     }
 
@@ -211,7 +218,7 @@ public class ClienteActivity extends AbstractActivity
                                 "Não foi possível salvar o cliente. A data de nascimento inválida")
                         .show();
             } else {
-                Cliente cliente = createCliente();
+                final Cliente cliente = createCliente();
                 if (!cliente.isValid()) {
                     (new ErrorAlert(this))
                             .setTitle("Não foi possível salvar o cliente.")
@@ -268,10 +275,10 @@ public class ClienteActivity extends AbstractActivity
         new MaskedWatcher("(##)#####-####", aq.id(R.id.celular).getEditText()).setAcceptOnlyNumbers(true);
         new MaskedWatcher("(##)####-####", aq.id(R.id.telefone).getEditText()).setAcceptOnlyNumbers(true);
 
-        Cliente cliente = (Cliente) getIntent().getExtras().get(Constante.CLIENTE);
+       mCliente = (Cliente) getIntent().getExtras().get(Constante.CLIENTE);
 
-        if (cliente != null) {
-            loadFromCliente(cliente);
+        if (mCliente != null) {
+            loadFromCliente(mCliente);
         }
     }
 

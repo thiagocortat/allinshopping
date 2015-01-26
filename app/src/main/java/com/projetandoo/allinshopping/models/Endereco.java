@@ -33,6 +33,10 @@ public class Endereco extends ValidationConstraint implements Serializable {
 
 	private static final String ID_FIELD_NAME = "id";
 
+//    public static final String CLIENTE_FIELD_NAME = "cliente_id";
+//
+//    @DatabaseField(columnName = Endereco.CLIENTE_FIELD_NAME, foreign = true, foreignAutoRefresh = true)
+//    private Endereco endereco;
 
 	@DatabaseField(columnName = Endereco.ID_FIELD_NAME, generatedId = true)
 	private Long internalId;

@@ -63,7 +63,7 @@ public class Cliente extends ValidationConstraint
 
     @Expose
     @SerializedName("endereco")
-    @DatabaseField(columnName = Cliente.ENDERECO_FIELD_NAME, foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true)
+    @DatabaseField(columnName = Cliente.ENDERECO_FIELD_NAME, foreign = true,  canBeNull = false, foreignAutoCreate = true, foreignAutoRefresh = true)
     private Endereco endereco;
 
     public Cliente() {
@@ -159,5 +159,13 @@ public class Cliente extends ValidationConstraint
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Long getBackofficeId() {
+        return backofficeId;
+    }
+
+    public void setBackofficeId(Long backofficeId) {
+        this.backofficeId = backofficeId;
     }
 }

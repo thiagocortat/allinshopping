@@ -22,8 +22,8 @@ public class DownloadCliente extends AbstractDownload<Cliente> {
 	public List<Cliente> list() throws IntegrationException {
 
 		try {
-			final JSONObject json = new GetResource(this.getURL(),super.getUserName(),super.getPassword()).getJSON();
-			final Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd")
+			JSONObject json = new GetResource(this.getURL(),super.getUserName(),super.getPassword()).getJSON();
+			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd")
 					.create();
 			
 			return toList(gson, json.get("list"));

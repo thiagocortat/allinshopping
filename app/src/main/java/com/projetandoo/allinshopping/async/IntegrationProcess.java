@@ -149,4 +149,7 @@ public class IntegrationProcess {
 		}
 	}
 
+    public void setContext(Context context) {
+        this.context = context;
+    }
 }

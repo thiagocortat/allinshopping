@@ -4,24 +4,29 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+
+import com.projetandoo.allinshopping.AutenticacaoParaEnvioDePedidoActivity;
 import com.projetandoo.allinshopping.alerts.ActionDialog;
 import com.projetandoo.allinshopping.exceptions.IntegrationException;
 import com.projetandoo.allinshopping.exceptions.NoUniqueRegistryException;
+import com.projetandoo.allinshopping.models.Pedido;
 import com.projetandoo.allinshopping.services.ConfigurationService;
+import com.projetandoo.allinshopping.services.PedidoService;
+import com.projetandoo.allinshopping.utilities.PriceUtilities;
 
 import org.json.JSONException;
 
 public class SendPedidoIntegrationAsyncProcess extends
         AsyncTask<Void, String, String> {
 
-    private IntegrationProcess integration = new IntegrationProcess();
-    private ConfigurationService service;
+    private IntegrationProcess integration;
+//    private ConfigurationService service;
     private Context context;
     private ProgressDialog progress;
 
     public SendPedidoIntegrationAsyncProcess(Context context) {
         this.context = context;
-        this.service = new ConfigurationService(context);
+//        this.service = new ConfigurationService(context);
     }
 
     @Override
@@ -34,6 +39,10 @@ public class SendPedidoIntegrationAsyncProcess extends
     @Override
     protected String doInBackground(Void... avoid) {
         try {
+
+            AutenticacaoParaEnvioDePedidoActivity activity = (AutenticacaoParaEnvioDePedidoActivity) context;
+            //Colocando devido a um Bug NullPointerException no métodp abaixo
+            integration = new IntegrationProcess(activity.getEmail(), activity.getPassword(), activity);
 
             integration.enviarPedido();
 
@@ -65,5 +74,7 @@ public class SendPedidoIntegrationAsyncProcess extends
                 .setMessage(
                         "Seu pedido foi concluído com sucesso, obrigado pela preferência")
                 .show();
+
+        PriceUtilities.novoPedido();
     }
 }

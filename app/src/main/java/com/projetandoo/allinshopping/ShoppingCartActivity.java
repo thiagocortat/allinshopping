@@ -29,8 +29,8 @@ public class ShoppingCartActivity extends AbstractActivity
 					.setMessage("Cadastro de cliente")
                     .show();
 		} else if (view.getId() == R.id.continuar_comprando) {
-			Intent intent = new Intent(this, HomeActivity.class);
-			startActivity(intent);
+//			Intent intent = new Intent(this, HomeActivity.class);
+//			startActivity(intent);
             this.finish();
 		}
 

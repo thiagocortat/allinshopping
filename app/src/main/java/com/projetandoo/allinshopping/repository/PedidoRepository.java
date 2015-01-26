@@ -47,22 +47,6 @@ public class PedidoRepository extends AbstractRepository<Pedido, Long> {
         try {
             Log.i("com.projetandoo.allinshopping", "Listando os pedidos para envio para o backoffice");
             List<Pedido> pedidos = PEDIDO_DAO.queryBuilder().where().isNull("dataEnvio").query();
-            for (Pedido pedido : pedidos) {
-
-                List<ItemPedido> itens = new ArrayList<ItemPedido>();
-                itens.addAll(pedido.getItens());
-                //TODO:Resolver esse Bug Mandito
-                //TODO: getIdLoja() sempre retorna null
-//                Collections.sort(itens, new Comparator<ItemPedido>() {
-//
-//                    @Override
-//                    public int compare(ItemPedido lhs, ItemPedido rhs) {
-//                        return lhs.getProduto().getIdLoja().compareTo(rhs.getProduto().getIdLoja());
-//                    }
-//                });
-                pedido.setItens(itens);
-
-            }
             return pedidos;
 
         } catch (SQLException sqlexception) {

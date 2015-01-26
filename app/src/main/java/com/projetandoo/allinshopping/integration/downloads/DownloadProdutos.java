@@ -16,12 +16,12 @@ public class DownloadProdutos extends AbstractDownload<Produto> {
 	@Override
 	public List<Produto> list() throws IntegrationException { //NOPMD
 		
-			final List<Produto> produtos =  super.list();
-			for(final Produto produto : produtos){
-				for( final Imagem imagem : produto.getImagens() ) {
+			List<Produto> produtos =  super.list();
+			for(Produto produto : produtos){
+				for( Imagem imagem : produto.getImagens() ) {
 					imagem.setProduto(produto);
 				}
-				for( final Atributo atributo : produto.getAtributos() ){
+				for(Atributo atributo : produto.getAtributos() ){
 					atributo.setProduto(produto);
 				}
 			}
