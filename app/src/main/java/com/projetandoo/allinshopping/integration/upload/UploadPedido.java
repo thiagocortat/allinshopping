@@ -29,11 +29,10 @@ public class UploadPedido extends AbstractUpload<Pedido>{
 
             for(ItemPedido i : pedido.getItens()){
                     JSONObject item = new JSONObject(gson.toJson(i));
-                JSONObject itemName = new JSONObject();
-                itemName.put("item", item);
-                itens.put(itemName);
+//                JSONObject itemName = new JSONObject();
+//                itemName.put("item", item);
+                itens.put(item);
 //                    itens.put(format("{ \"item\" :%s }",item.toString()));//Eu acho que é neste pedaço aqui. provalemte não está escapando
-//                itens.put(format("{ \"item\" :%s }",item.toString()));//Eu acho que é neste pedaço aqui. provalemte não está escapando
 ////                itens.put(item);
             }
 

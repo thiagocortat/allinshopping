@@ -47,7 +47,7 @@ public class ConfigurationService {
 										   .withMinuteOfHour(0)
 										   .withHourOfDay(0)
  //.minusDays(3)//Este é usado para não atualizar
-                                           .plusDays(1) //Usado para forçar a atualização
+ //                                          .plusDays(1) //Usado para forçar a atualização
 										   .withSecondOfMinute(0);
 			return !( agora.isBefore(ultimaAtualizacao.getMillis()) );
 				
