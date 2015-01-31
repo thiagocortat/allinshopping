@@ -56,17 +56,7 @@ public class DownloadResource {
             directory.mkdirs();
         }
 
-//        Picasso.Builder builder = new Picasso.Builder(MyApplication.getAppContext());
-//        final Picasso picasso =  builder.downloader(new OkHttpDownloader(MyApplication.getAppContext()) {
-//            @Override
-//            protected HttpURLConnection openConnection(Uri uri) throws IOException {
-//                HttpURLConnection connection = super.openConnection(uri);
-//                connection.setRequestProperty("Authorization", Constante.CREDENTIALS);
-//                return connection;
-//            }
-//        }).build();
-
-                int i = -1;
+        int i = -1;
 		for( Imagem imagem : produto.getImagens() ) {
 
             //Bug, crie a featue usando Picasso
@@ -188,53 +178,4 @@ public class DownloadResource {
 //	}
 
 
-
-//    class  ImagemTarget implements Target {
-//
-//        private Imagem imagem;
-//
-//        public ImagemTarget(Imagem imagem){
-//            this.imagem = imagem;
-//        }
-//
-//        @Override
-//        public void onBitmapLoaded(final Bitmap bitmap, Picasso.LoadedFrom from) {
-//            new Thread(new Runnable() {
-//                @Override
-//                public void run() {
-//
-//                    File directory = new File(Constante.SDCARD_ALLINSHOPP_IMAGES);
-//                    if( !directory.exists() ){
-//                        directory.mkdirs();
-//                    }
-//
-//                    File file = new File(Constante.SDCARD_ALLINSHOPP_IMAGES , String.format("%s-%s.jpg", imagem.getProduto().getId(),imagem.getId()));
-//                    try
-//                    {
-//                        file.createNewFile();
-//                        FileOutputStream ostream = new FileOutputStream(file);
-//                        bitmap.compress(Bitmap.CompressFormat.JPEG, 75, ostream);
-//                        ostream.close();
-//
-//                        imagem.setFileName(file.getAbsolutePath());
-//                    }
-//                    catch (Exception e)
-//                    {
-//                        e.printStackTrace();
-//                    }
-//
-//                }
-//            }).start();
-//        }
-//
-//        @Override
-//        public void onBitmapFailed(Drawable errorDrawable) {
-//
-//        }
-//
-//        @Override
-//        public void onPrepareLoad(Drawable placeHolderDrawable) {
-//
-//        }
-//    }
 }

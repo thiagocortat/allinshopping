@@ -1,6 +1,8 @@
 package com.projetandoo.allinshopping.async;
 
 import android.content.Context;
+import android.util.Log;
+
 import com.projetandoo.allinshopping.enumations.IntegrationType;
 import com.projetandoo.allinshopping.enumations.ResourceType;
 import com.projetandoo.allinshopping.exceptions.IntegrationException;
@@ -19,6 +21,16 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 public class IntegrationProcess {
+
+    /*
+     * Gets the number of available cores (not always the same as the maximum number of cores)
+     */
+    private static int NUMBER_OF_CORES = Runtime.getRuntime().availableProcessors();
+    private static final int MAX_POOL_SIZE = 10;
+    // Sets the amount of time an idle thread waits before terminating
+    private static final int KEEP_ALIVE_TIME = 1;
+    // Sets the Time Unit to seconds
+    private static final TimeUnit KEEP_ALIVE_TIME_UNIT = TimeUnit.SECONDS;
 
 	private Context context;
 	private Integration integration;
@@ -110,24 +122,25 @@ public class IntegrationProcess {
 
 	@SuppressWarnings("unchecked")
 	public void importarProdutos() throws IntegrationException { 
-		final ProdutoService produtoservice = new ProdutoService(context);
+		ProdutoService produtoservice = new ProdutoService(context);
 		produtoservice.removeAll();
 
 		List<Produto> produtos = integration.getDownload(
 				ResourceType.PRODUTOS).list();
 
-		BlockingQueue<Runnable> blockingQueue = new LinkedBlockingQueue<Runnable>();
-		ThreadPoolExecutor t = new ThreadPoolExecutor(15,15,
-//											Integer.valueOf(bundle.getString("initial-pool-size")),
-//											Integer.valueOf(bundle.getString("max-pool-size")),
-											1,
-											TimeUnit.SECONDS, 
-											blockingQueue);
+		final BlockingQueue<Runnable> blockingQueue = new LinkedBlockingQueue<Runnable>();
+		ThreadPoolExecutor t = new ThreadPoolExecutor(
+                                    NUMBER_OF_CORES,       // Initial pool size
+                                    MAX_POOL_SIZE,       // Max pool size
+                                    KEEP_ALIVE_TIME,
+                                    TimeUnit.SECONDS,
+                                    blockingQueue);
 
 		for (Produto produto : produtos) {
 			t.execute(new IntegrationProdutoRunnable(produto, produtoservice));
 		}
 
+        // wait for all of the executor threads to finish
 		do {
 			if (t.getActiveCount() == 0
 					&& t.getCompletedTaskCount() == produtos.size()) {
@@ -136,6 +149,14 @@ public class IntegrationProcess {
 			}
 		} while (true);
 
+        try {
+            while (!t.awaitTermination(60, TimeUnit.SECONDS)) {
+                Log.i("IntegrationProcess", "Awaiting completion of threads.");
+            }
+        } catch (InterruptedException ex) {
+            t.shutdownNow();
+            Thread.currentThread().interrupt();
+        }
 	}
 
 	@SuppressWarnings("unchecked")

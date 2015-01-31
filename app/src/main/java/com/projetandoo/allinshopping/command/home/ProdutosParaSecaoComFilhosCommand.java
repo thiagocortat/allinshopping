@@ -29,6 +29,7 @@ public class ProdutosParaSecaoComFilhosCommand implements Command {
 		secoes.add(TODOS);
 
 		home.getSecoes().setAdapter(new SecaoAdapter(home, secoes));
+        home.exibirBoneca(true);
 		home.setBoneca(R.drawable.lista_produtos);
 		
 		return null;

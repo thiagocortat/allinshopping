@@ -46,64 +46,29 @@ public class IntegrationProdutoRunnable implements Runnable {
 	}
 
 
-    public void getResourceByProduto(Produto produto) //NOPMD
-            throws IntegrationException {
-
-        File directory = new File(Constante.SDCARD_ALLINSHOPP_IMAGES);
-        if( !directory.exists() ){
-            directory.mkdirs();
-        }
-
-        int i = -1;
-        for( Imagem imagem : produto.getImagens() ) {
-
-            Boolean hasSaved = (++i == (produto.getImagens().size()-1));
-            new AsyncTask<Object, Void, Boolean>(){
-
-                @Override
-                protected Boolean doInBackground(Object... params) {
-                    Imagem imagem = (Imagem) params[0];
-                    Bitmap bitmap;
-                    try {
-                        bitmap = Picasso.with(MyApplication.getAppContext()).load(imagem.getURL()).get();
-                        File file = new File(Constante.SDCARD_ALLINSHOPP_IMAGES , String.format("%s-%s.jpg", imagem.getProduto().getId(),imagem.getId()));
-
-                        file.createNewFile();
-                        FileOutputStream ostream = new FileOutputStream(file);
-                        if (bitmap != null)
-                            bitmap.compress(Bitmap.CompressFormat.JPEG, 75, ostream);
-                        ostream.close();
-
-                        imagem.setFileName(file.getAbsolutePath());
-
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    return (Boolean) params[1];
-                }
-
-                @Override
-                protected void onPostExecute(Boolean hasSaved) {
-                    if(hasSaved)
-                        saveProduto();
-
-                }
-            }.execute(imagem, hasSaved);
-        }
-
-
-//        new AsyncTask<Imagem, Void, Void>(){
+//    public void getResourceByProduto(Produto produto) //NOPMD
+//            throws IntegrationException {
 //
-//            @Override
-//            protected Void doInBackground(Imagem... params) {
+//        File directory = new File(Constante.SDCARD_ALLINSHOPP_IMAGES);
+//        if( !directory.exists() ){
+//            directory.mkdirs();
+//        }
 //
-//                for( Imagem imagem : params) {
+//        int i = -1;
+//        for( Imagem imagem : produto.getImagens() ) {
+//
+//            Boolean hasSaved = (++i == (produto.getImagens().size()-1));
+//            new AsyncTask<Object, Void, Boolean>(){
+//
+//                @Override
+//                protected Boolean doInBackground(Object... params) {
+//                    Imagem imagem = (Imagem) params[0];
 //                    Bitmap bitmap;
 //                    try {
 //                        bitmap = Picasso.with(MyApplication.getAppContext()).load(imagem.getURL()).get();
 //                        File file = new File(Constante.SDCARD_ALLINSHOPP_IMAGES , String.format("%s-%s.jpg", imagem.getProduto().getId(),imagem.getId()));
 //
+//                        file.createNewFile();
 //                        FileOutputStream ostream = new FileOutputStream(file);
 //                        if (bitmap != null)
 //                            bitmap.compress(Bitmap.CompressFormat.JPEG, 75, ostream);
@@ -115,15 +80,19 @@ public class IntegrationProdutoRunnable implements Runnable {
 //                    } catch (Exception e) {
 //                        e.printStackTrace();
 //                    }
+//                    return (Boolean) params[1];
 //                }
 //
-//                saveProduto();
+//                @Override
+//                protected void onPostExecute(Boolean hasSaved) {
+//                    if(hasSaved)
+//                        saveProduto();
 //
-//                return null;
-//            }
-//        }.execute((Imagem[]) produto.getImagens().toArray());
-
-    }
+//                }
+//            }.execute(imagem, hasSaved);
+//        }
+//
+//    }
 
     private void saveProduto(){
         service.save(produto);

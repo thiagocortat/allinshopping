@@ -1,5 +1,7 @@
 package com.projetandoo.allinshopping;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -62,9 +64,19 @@ public class HomeActivity extends AbstractActivity implements OnClickListener {
 	public void onBackPressed() {
 
 		if (this.secao == null) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Deseja sair da Loja?")
+                    .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            HomeActivity.this.finish();
+                        }
+                    })
+                    .setNegativeButton("Não", null);
+            builder.show();
 //            final Intent intent = new Intent(this,MainActivity.class);
 //            startActivity(intent);
-            this.finish();
+//            this.finish();
 		} else {
 			this.secao = secao.getSecaoPai();
 			CommandFactory.getFactory(this)

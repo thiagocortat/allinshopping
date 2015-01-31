@@ -87,6 +87,11 @@ public class IntegrationAsyncProcess extends AsyncTask<Void, String, String> {
 
         if (StringUtils.isEmpty(message)) {
             service.atualizar();
+            try {
+                Thread.sleep(5000L);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             return "Dados importados com sucesso";
         }
         else {
@@ -111,6 +116,7 @@ public class IntegrationAsyncProcess extends AsyncTask<Void, String, String> {
 	@Override
 	protected void onPostExecute(String message) {
 		super.onPostExecute(message);
+
 
         if (progress.isShowing()) {
             progress.dismiss();
