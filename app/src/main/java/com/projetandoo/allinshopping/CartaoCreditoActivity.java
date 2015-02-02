@@ -30,7 +30,7 @@ public class CartaoCreditoActivity extends AbstractActivity
     private AQuery aq;
 
     @Override
-    public void onClick(final View view) {
+    public void onClick(View view) {
         Pedido pedido = PriceUtilities.getPedido();
         Intent intent = null;
 
@@ -38,30 +38,44 @@ public class CartaoCreditoActivity extends AbstractActivity
 
             DadosPagamento dadospagamento = criarDadosPagamento(pedido);
 
-            if (dadospagamento.isValid()) {
+            if (aq.id(R.id.parcelas).getSelectedItemPosition() == 0) {
+                new ErrorAlert(this)
+                        .setTitle("Dados Incompletos")
+                        .setMessage("Por favor informe o número de parcelas")
+                        .show();
+            }
+
+            else if (dadospagamento.isValid()) {
                 (new PedidoService(this)).save(dadospagamento);
 
                 if( this.isNetworkConnected() ) {
                     intent = new Intent(this, AutenticacaoParaEnvioDePedidoActivity.class);
-                } else {
+                    startActivity(intent);
+                    this.finish();
+                }
+                else {
                     PriceUtilities.novoPedido();
                     new ActionDialog(this)
                             .setTitle("Pedido")
                             .setMessage("Seu pedido foi salvo com sucesso e será enviado tão logo tenha conexão com a internet disponível.")
                             .show();
                 }
-            } else {
+            }
+            else {
                 new ErrorAlert(this)
                         .setTitle("Dados de Cartão de crédito")
                         .setMessages(dadospagamento.errors())
                         .setCancelable(true)
                         .show();
             }
-        } else {
-            intent = new Intent(this, PagamentoActivity.class);
+
         }
-        startActivity(intent);
-        this.finish();
+        else {
+            intent = new Intent(this, PagamentoActivity.class);
+            startActivity(intent);
+            this.finish();
+        }
+
     }
 
     private DadosPagamento criarDadosPagamento(Pedido pedido) {
