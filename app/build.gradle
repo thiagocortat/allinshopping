@@ -103,6 +103,6 @@ dependencies {
         exclude module: 'wagon-http-lightweight'
         exclude module: 'wagon-provider-api'
     }
-    androidTestCompile 'com.android.support.test:testing-support-lib:0.1'
+//    androidTestCompile 'com.android.support.test:testing-support-lib:0.1'
 
 }
