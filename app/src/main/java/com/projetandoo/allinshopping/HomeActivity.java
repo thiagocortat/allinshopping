@@ -2,14 +2,15 @@ package com.projetandoo.allinshopping;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
-import com.androidquery.AQuery;
 import com.projetandoo.allinshopping.alerts.ErrorAlert;
 import com.projetandoo.allinshopping.commandfactory.CommandFactory;
 import com.projetandoo.allinshopping.models.Secao;
@@ -17,26 +18,35 @@ import com.projetandoo.allinshopping.models.Secao;
 public class HomeActivity extends AbstractActivity implements OnClickListener {
 
 	private Secao secao;
-	private ListView secoes;
-	private ListView produtos;
-	private AQuery aq = new AQuery(this);
-	
-	@Override
+    private TextView txPromocao;
+    private ListView secoes;
+    private GridView produtos;
+    private ImageView boneca;
+
+    @Override
 	protected void onCreate(final Bundle bundle) {
 		super.onCreate(bundle);
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 		setContentView(R.layout.activity_main);
-		aq.id(R.id.promocoes).invisible();
-		this.secoes = aq.id(R.id.secoes).getListView();
-		this.produtos = aq.id(R.id.promocoes).getListView();
+
+        findViews();
+
+        produtos.setVisibility(View.GONE);
 
 	}
+
+    private void findViews() {
+        txPromocao = (TextView)findViewById( R.id.promocao );
+        secoes = (ListView)findViewById( R.id.secoes );
+        produtos = (GridView)findViewById( R.id.promocoes );
+        boneca = (ImageView)findViewById( R.id.boneca );
+    }
 
 	public ListView getSecoes() {
 		return this.secoes;
 	}
 
-	public ListView getProdutos() {
+	public GridView getProdutos() {
 		return this.produtos;
 	}
 
@@ -94,11 +104,11 @@ public class HomeActivity extends AbstractActivity implements OnClickListener {
 	}
 
 	public void setTitulo(String titulo) {
-		aq.id(R.id.promocao).text(titulo);
+        txPromocao.setText(titulo);
 	}
 	
 	public String getTitulo() {
-		return aq.id(R.id.promocao).getText().toString();
+		return txPromocao.getText().toString();
 	}
 	
 	public Secao getSecao() {
@@ -106,27 +116,27 @@ public class HomeActivity extends AbstractActivity implements OnClickListener {
 	}
 
 	public void setBoneca(int image) {
-		aq.id(R.id.boneca).image(image);
+        boneca.setImageResource(image);
 		
 	}
 
 	public void exibirBoneca(boolean show) {
 		if(show) {
-			aq.id(R.id.boneca).visible();
-            aq.id(R.id.promocoes).invisible();
+            boneca.setVisibility(View.VISIBLE);
+            produtos.setVisibility(View.GONE);
 		} else {
-			aq.id(R.id.boneca).invisible();
-            aq.id(R.id.promocoes).visible();
+            boneca.setVisibility(View.GONE);
+            produtos.setVisibility(View.VISIBLE);
 		}
 	}
 
 	public void exibirListaProdutos(boolean show) {
 		if(show) {
-			aq.id(R.id.promocoes).visible();
-            aq.id(R.id.boneca).invisible();
+            boneca.setVisibility(View.GONE);
+            produtos.setVisibility(View.VISIBLE);
 		} else {
-			aq.id(R.id.promocoes).invisible();
-            aq.id(R.id.boneca).visible();
+            boneca.setVisibility(View.VISIBLE);
+            produtos.setVisibility(View.GONE);
 		}
 		
 	}

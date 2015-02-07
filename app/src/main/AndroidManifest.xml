@@ -1,55 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.projetandoo.allinshopping">
+    package="com.projetandoo.allinshopping" >
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".MyApplication"
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
         android:largeHeap="true"
-        android:allowBackup="true" android:label="@string/app_name" android:hardwareAccelerated="true"
-        android:icon="@drawable/ic_launcher" android:theme="@style/AppTheme">
-
-        <activity android:label="@string/app_name" android:name="com.projetandoo.allinshopping.MainActivity"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
             android:screenOrientation="landscape" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:label="@string/app_name" android:name="com.projetandoo.allinshopping.HomeActivity"
-            android:screenOrientation="landscape"/>
-        <activity android:label="@string/shopping_cart"
-            android:name="com.projetandoo.allinshopping.ShoppingCartActivity"
-            android:screenOrientation="landscape"/>
-        <activity android:label="@string/cliente" android:name="com.projetandoo.allinshopping.ClienteActivity"
-            android:screenOrientation="landscape"/>
-        <activity android:label="@string/pagamento"
-            android:name="com.projetandoo.allinshopping.PagamentoActivity"
-            android:screenOrientation="landscape"/>
-        <activity android:label="@string/clientes"
-            android:name="com.projetandoo.allinshopping.ListClientesActivity"
-            android:screenOrientation="landscape"/>
-        <activity android:label="Enviar Pedido"
-            android:name="com.projetandoo.allinshopping.AutenticacaoParaEnvioDePedidoActivity"
-            android:screenOrientation="landscape"/>
-        <activity android:label="Atualizar o Sistema"
-            android:name="com.projetandoo.allinshopping.AutenticacaoAtualizacaoSistemaActivity"
-            android:screenOrientation="landscape"/>
-        <activity android:label="@string/title_activity_cartao_credito"
-            android:name="com.projetandoo.allinshopping.CartaoCreditoActivity"
-            android:screenOrientation="landscape"/>
-        <activity android:label="@string/title_activity_configuration"
-            android:name="com.projetandoo.allinshopping.ConfigurationActivity"
-            android:screenOrientation="landscape"/>
+        <activity
+            android:name=".HomeActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ShoppingCartActivity"
+            android:label="@string/shopping_cart"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ClienteActivity"
+            android:label="@string/cliente"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".PagamentoActivity"
+            android:label="@string/pagamento"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ListClientesActivity"
+            android:label="@string/clientes"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".AutenticacaoParaEnvioDePedidoActivity"
+            android:label="Enviar Pedido"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".AutenticacaoAtualizacaoSistemaActivity"
+            android:label="Atualizar o Sistema"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".CartaoCreditoActivity"
+            android:label="@string/title_activity_cartao_credito"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ConfigurationActivity"
+            android:label="@string/title_activity_configuration"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".DetailActivity"
+            android:label="@string/title_activity_detail" >
+        </activity>
     </application>
-
-
-
-
-
-
 
 </manifest>

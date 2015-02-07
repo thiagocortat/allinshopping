@@ -1,114 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:padding="8.0dip">
+    android:descendantFocusability="blocksDescendants">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardview"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:elevation="100dp"
+        card_view:cardBackgroundColor="@color/cardview_initial_background"
+        card_view:cardCornerRadius="5dp"
+        android:layout_margin="@dimen/margin_min">
 
-        <ImageView
-            android:id="@id/imagem"
-            android:layout_width="200.0dip"
-            android:layout_height="200.0dip"
-            android:layout_weight="1"/>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingLeft="5dip"
-            android:layout_weight="1">
+            android:layout_margin="@dimen/margin_min">
 
-            <TextView
-                android:id="@id/titulo"
-                android:layout_width="wrap_content"
+            <com.projetandoo.allinshopping.views.SquareImageView
+                android:id="@id/imagem"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Promoções do dias"
-                android:textSize="20.0dip" />
-            
-            <TextView
-                android:id="@id/descricao"
-                android:layout_width="wrap_content"
+                android:adjustViewBounds="false"
+                android:scaleType="fitCenter"
+                tools:src="@drawable/ic_launcher"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="descricao"
-                 />
+                android:orientation="vertical"
+                android:layout_below="@+id/imagem">
 
-            <TextView
-                android:id="@id/preco"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="10.00"/>
-
-            <!--
-            LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:orientation="horizontal" >
-
-                <ImageView
+                <TextView
+                    android:id="@id/titulo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="9.0dip"
-                    android:src="@drawable/branco" />
+                    android:layout_gravity="top|center_horizontal"
+                    android:text="Promoções do dias"
+                    android:textSize="14sp" />
 
-                <ImageView
+                <TextView
+                    android:id="@id/descricao"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="9.0dip"
-                    android:src="@drawable/preto" />
+                    android:visibility="gone"
+                    tools:text="descricao"
+                    />
 
-                <ImageView
+                <TextView
+                    android:id="@id/preco"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="9.0dip"
-                    android:src="@drawable/amarelo" />
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="16sp"
+                    tools:text="10.00"/>
 
-                <ImageView
+                <!--
+                LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="horizontal" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="9.0dip"
+                        android:src="@drawable/branco" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="9.0dip"
+                        android:src="@drawable/preto" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="9.0dip"
+                        android:src="@drawable/amarelo" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="9.0dip"
+                        android:src="@drawable/azul" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="9.0dip"
+                        android:src="@drawable/verde" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="9.0dip"
+                        android:src="@drawable/vermelho" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="9.0dip"
+                        android:src="@drawable/rosa" />
+                </LinearLayout
+                -->
+
+                <RadioGroup
+                    android:id="@id/tamanho"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:orientation="horizontal"
+                    android:visibility="invisible" >
+                </RadioGroup>
+
+                <Button
+                    android:id="@id/adicionar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="9.0dip"
-                    android:src="@drawable/azul" />
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:text="Adicionar"
+                    android:visibility="gone"/>
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="9.0dip"
-                    android:src="@drawable/verde" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="9.0dip"
-                    android:src="@drawable/vermelho" />
+                <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="vertical"-->
+                <!--android:paddingLeft="5dip">-->
+                <!--&lt;!&ndash;android:layout_weight="1"&ndash;&gt;-->
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="9.0dip"
-                    android:src="@drawable/rosa" />
-            </LinearLayout
-            -->
+                <!---->
+                <!--</LinearLayout>-->
 
-            <RadioGroup
-                android:id="@id/tamanho"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:orientation="horizontal"
-                android:visibility="invisible" >
-            </RadioGroup>
+            </LinearLayout>
 
-            <Button
-                android:id="@id/adicionar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center"
-                android:text="Adicionar" />
-        </LinearLayout>
-    </LinearLayout>
+            </RelativeLayout>
+
+       </android.support.v7.widget.CardView>
+
+
 
 </RelativeLayout>

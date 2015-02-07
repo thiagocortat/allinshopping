@@ -108,6 +108,7 @@
     <color name="TransparentGrey">#7F000000</color>
     <color name="GalleryGray">#999999</color>
 
+    <color name="cardview_initial_background">@color/White</color>
 
     <color name="blue_drawer_list_background">#01335A</color>
     <color name="blue_drawer_list_checked_background">#012038</color>
@@ -115,6 +116,7 @@
 
     <color name="new_drawer_list_checked_background">#CC000000</color>
 
+    <color name="list_item_pressed">#1A000000</color>
 
     <integer-array name="progress_colors">
         <item>@color/gplus_color_1</item>
