@@ -66,9 +66,9 @@ public class ProdutoAdapter extends ArrayAdapter<Produto> implements OnClickList
 
         Uri uri = Uri.fromFile(new File(produto.getDefaultImage()));
         // 1st: reset the imageView
-        Picasso.with(activity).cancelRequest(viewHolder.imagem);
+//        Picasso.with(activity).cancelRequest(viewHolder.imagem);
         // 2nd start a new load for the imageView
-        Picasso.with(activity).load(uri).skipMemoryCache().into(viewHolder.imagem);
+        Picasso.with(activity).load(uri).skipMemoryCache().noFade().into(viewHolder.imagem);
 
         viewHolder.titulo.setText(produto.getTitulo());
         viewHolder.descricao.setText(produto.getDescricao());

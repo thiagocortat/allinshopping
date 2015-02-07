@@ -35,10 +35,20 @@ public class CartaoCreditoActivity extends AbstractActivity
         Intent intent = null;
 
         if (view.getId() == R.id.salvar) {
+            DadosPagamento dadospagamento = null;
+            try {
+                dadospagamento = criarDadosPagamento(pedido);
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+            if (dadospagamento == null){
+                new ErrorAlert(this)
+                        .setTitle("Dados Incompletos")
+                        .setMessage("Por favor informe os dados do cartão")
+                        .show();
+            }
 
-            DadosPagamento dadospagamento = criarDadosPagamento(pedido);
-
-            if (aq.id(R.id.parcelas).getSelectedItemPosition() == 0) {
+            else if (aq.id(R.id.parcelas).getSelectedItemPosition() == 0) {
                 new ErrorAlert(this)
                         .setTitle("Dados Incompletos")
                         .setMessage("Por favor informe o número de parcelas")

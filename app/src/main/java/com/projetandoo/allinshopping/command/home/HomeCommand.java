@@ -30,6 +30,7 @@ public class HomeCommand implements Command {
 			home.getSecoes().setAdapter(new SecaoAdapter(home, secaoList));
 			home.exibirBoneca(true);
 			home.setBoneca(R.drawable.lista_secoes);
+            home.setTitle(R.string.app_name);
 			return null;
 		} catch (SQLException sqlexception) {
 			throw new RuntimeException(sqlexception);

@@ -2,10 +2,12 @@ package com.projetandoo.allinshopping;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -13,12 +15,14 @@ import android.widget.TextView;
 
 import com.projetandoo.allinshopping.alerts.ErrorAlert;
 import com.projetandoo.allinshopping.commandfactory.CommandFactory;
+import com.projetandoo.allinshopping.models.Produto;
 import com.projetandoo.allinshopping.models.Secao;
+import com.projetandoo.allinshopping.utilities.Constante;
 
-public class HomeActivity extends AbstractActivity implements OnClickListener {
+public class HomeActivity extends AbstractActivity implements OnClickListener, AdapterView.OnItemClickListener {
 
 	private Secao secao;
-    private TextView txPromocao;
+//    private TextView txPromocao;
     private ListView secoes;
     private GridView produtos;
     private ImageView boneca;
@@ -36,9 +40,10 @@ public class HomeActivity extends AbstractActivity implements OnClickListener {
 	}
 
     private void findViews() {
-        txPromocao = (TextView)findViewById( R.id.promocao );
+//        txPromocao = (TextView)findViewById( R.id.promocao );
         secoes = (ListView)findViewById( R.id.secoes );
         produtos = (GridView)findViewById( R.id.promocoes );
+        produtos.setOnItemClickListener(this);
         boneca = (ImageView)findViewById( R.id.boneca );
     }
 
@@ -51,11 +56,10 @@ public class HomeActivity extends AbstractActivity implements OnClickListener {
 	}
 
 	@Override
-	protected void onStart() {
-
+    public void onStart() {
         try {
-
             super.onStart();
+            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
             CommandFactory.getFactory(this)
                     .createCommand()
                     .execute();
@@ -104,11 +108,13 @@ public class HomeActivity extends AbstractActivity implements OnClickListener {
 	}
 
 	public void setTitulo(String titulo) {
-        txPromocao.setText(titulo);
+        setTitle(titulo);
+//        txPromocao.setText(titulo);
 	}
 	
 	public String getTitulo() {
-		return txPromocao.getText().toString();
+		return getTitle().toString();
+        //return txPromocao.getText().toString();
 	}
 	
 	public Secao getSecao() {
@@ -141,4 +147,11 @@ public class HomeActivity extends AbstractActivity implements OnClickListener {
 		
 	}
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Produto produto = (Produto) parent.getItemAtPosition(position);
+        Intent it = new Intent(this, DetailActivity.class);
+        it.putExtra(Constante.Extra.PRODUTO, produto);
+        startActivity(it);
+    }
 }

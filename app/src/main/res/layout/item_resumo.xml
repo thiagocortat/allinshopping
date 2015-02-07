@@ -40,7 +40,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="top|center_horizontal"
-                    android:text="Promoções do dias"
+                    tools:text="Promoções do dias"
+                    android:maxLines="3"
+                    android:ellipsize="end"
                     android:textSize="14sp" />
 
                 <TextView

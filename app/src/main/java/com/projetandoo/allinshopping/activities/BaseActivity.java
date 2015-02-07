@@ -1,30 +1,24 @@
-package com.projetandoo.allinshopping;
+package com.projetandoo.allinshopping.activities;
 
-import android.content.Context;
-import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v7.app.ActionBarActivity;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.j256.ormlite.android.apptools.OpenHelperManager;
-import com.projetandoo.allinshopping.database.DbHelper;
+import com.projetandoo.allinshopping.R;
 import com.projetandoo.allinshopping.interfaces.OnLayoutInjectListener;
-import com.projetandoo.allinshopping.models.Pedido;
 
 import butterknife.ButterKnife;
 import fr.castorflex.android.circularprogressbar.CircularProgressBar;
 import fr.castorflex.android.circularprogressbar.CircularProgressDrawable;
 
-public abstract class AbstractActivity extends ActionBarActivity implements OnLayoutInjectListener {
 
-    private volatile DbHelper helper;
+public class BaseActivity extends ActionBarActivity implements OnLayoutInjectListener {
+
+
     protected ViewGroup newRoot;
     protected View mEmptyView;
     protected View mEmptyImageView;
@@ -35,32 +29,9 @@ public abstract class AbstractActivity extends ActionBarActivity implements OnLa
     private boolean mIsContentEmpty;
 
 
-    //    private Context context;
-    private Pedido pedido;
-
-    protected Pedido getPedido()
-    {
-		return this.pedido;
-    }
-
-	protected void setPedido(final Pedido pedido)
-    {
-		this.pedido = pedido;
-    }
-	
-    public AbstractActivity() {
-        super();
-    }
-    
-//    public AbstractActivity(final Context context){
-//        this.context = context;
-//    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        if (helper == null) {
-            helper = OpenHelperManager.getHelper(this, DbHelper.class);
-        }
+//        supportRequestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         super.onCreate(savedInstanceState);
 
         if (getLayoutResource() != 0) {
@@ -69,18 +40,25 @@ public abstract class AbstractActivity extends ActionBarActivity implements OnLa
             ButterKnife.inject(this);
             onAfterInjectViews(savedInstanceState);
         }
+
     }
 
     @Override
     public void onStart() {
-        super.onStart();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        try {
+            super.onStart();
+
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+//            FontsUtil.setRobotoFont(this, (ViewGroup) getWindow().getDecorView());
+        }catch (Exception e) {}
+
     }
 
     public void showProgress() {
 
         if (findViewById(R.id.frameLayout) != null) {
-            showProgress(R.id.frameLayout);
+           showProgress(R.id.frameLayout);
         } else {
             showProgress(android.R.id.content);
         }
@@ -113,6 +91,7 @@ public abstract class AbstractActivity extends ActionBarActivity implements OnLa
         }
     }
 
+
     protected void inflateAndRunProgress(ViewGroup root) {
         rootCount = root.getChildCount();
         newRoot = (ViewGroup) getLayoutInflater().inflate(R.layout.fragment_progress, root, true);
@@ -126,60 +105,25 @@ public abstract class AbstractActivity extends ActionBarActivity implements OnLa
         mEmptyView = newRoot.findViewById(android.R.id.empty);
         if (mEmptyContainer != null) {
             mEmptyContainer.setVisibility(View.GONE);
+//            mEmptyView.setVisibility(View.GONE);
+//            mEmptyImageView.setVisibility(View.GONE);
         }
     }
-    
-    @Override
-	public boolean onCreateOptionsMenu(final Menu menu)
-    {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
 
-    @Override
-	public boolean onOptionsItemSelected(final MenuItem menuitem)
-    {
-    	Intent toStart = null; //NOPMD
-        switch(menuitem.getItemId()){
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
             case android.R.id.home:
                 finish();
                 break;
-        	case R.id.action_settings:
-        		toStart = new Intent(this, ConfigurationActivity.class);
-                startActivity(toStart);
-        		break;
-        	case R.id.shopping_cart:
-        		toStart = new Intent(this, ShoppingCartActivity.class);
-                startActivity(toStart);
-        		break;
-        	default:
-        		toStart = new Intent(this,HomeActivity.class);
-                startActivity(toStart);
-        		break;
+
+            default:
+                return super.onOptionsItemSelected(item);
         }
 
-        return super.onOptionsItemSelected(menuitem);
+        return super.onOptionsItemSelected(item);
     }
 
-    public boolean isNetworkConnected() {
-
-        ConnectivityManager manager = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo info =  manager.getActiveNetworkInfo();
-        if( info != null && ( info.isAvailable() || info.isConnected() ) ){
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (helper != null) {
-            OpenHelperManager.releaseHelper();
-            helper = null;
-        }
-    }
 
     /**
      * The default content for a ProgressFragment has a TextView that can be shown when
@@ -285,5 +229,4 @@ public abstract class AbstractActivity extends ActionBarActivity implements OnLa
 
     @Override
     public void onAfterInjectViews(Bundle savedInstanceState) {}
-
 }

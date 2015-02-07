@@ -16,7 +16,9 @@
     <string name="cancelar">Cancelar</string>
     <string name="concluir">Concluir</string>
     <string name="promocao">Produtos em destaque</string>
-    <string name="title_activity_detail">DetailActivity</string>
+    <string name="title_activity_detail">Informações do Produto</string>
+
+    <string name="item_wihout_description">Produto sem descrição</string>
 
     <string name="hello_world">Hello world!</string>
 

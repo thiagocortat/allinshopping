@@ -138,13 +138,14 @@ public class Secao
 
     public String getTitulo()
     {
-        String titulo = "";
-        if( this.getSecaoPai() != null )
-        {	
-        	titulo += this.getSecaoPai().getTitulo();
-        }
-        titulo += "/" + this.nome;
-        return titulo;
+//        String titulo = "";
+//        if( this.getSecaoPai() != null )
+//        {
+//        	titulo += this.getSecaoPai().getTitulo();
+//        }
+//        titulo += "/" + this.nome;
+
+        return this.nome;
     }
 
 	public void setNome(String nome)

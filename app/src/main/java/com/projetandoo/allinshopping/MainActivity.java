@@ -80,6 +80,12 @@ public class MainActivity extends AbstractActivity implements OnClickListener {
 	}
 
     @Override
+    public void onStart() {
+        super.onStart();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+    }
+
+    @Override
     public void onBackPressed() {
         this.finish();
     }

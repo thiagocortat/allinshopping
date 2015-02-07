@@ -39,4 +39,13 @@ public interface Constante {
     String USERNAME = "username";
     String SHARED_PREFERENCES = "ellasa";
 
+    public static class Extra {
+        public static final String IMAGES           = "com.projetandoo.allinshopping.IMAGES";
+        public static final String IMAGE_POSITION   = "com.projetandoo.allinshopping.IMAGE_POSITION";
+        public static final String DEAL             = "com.projetandoo.allinshopping.DEAL";
+        public static final String SELECT           = "com.projetandoo.allinshopping.SELECT";
+        public static final String POSITION         = "com.projetandoo.allinshopping.POSITION";
+        public static final String PRODUTO         = "com.projetandoo.allinshopping.PRODUTO";
+
+    }
 }
