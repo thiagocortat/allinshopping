@@ -64,6 +64,7 @@
                     android:id="@id/descricao"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:gravity="center"
                     android:ellipsize="end"
                     tools:text="descricao"/>
@@ -97,6 +98,7 @@
                 android:layout_above="@+id/adicionar"
                 android:layout_margin="@dimen/margin"
                 android:textSize="20sp"
+                android:textColor="@color/main_green_apptheme"
                 tools:text="10.00"/>
 
         </RelativeLayout>

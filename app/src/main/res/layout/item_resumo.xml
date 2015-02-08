@@ -58,7 +58,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
+                    android:textColor="@color/main_green_apptheme"
                     tools:text="10.00"/>
 
                 <!--
