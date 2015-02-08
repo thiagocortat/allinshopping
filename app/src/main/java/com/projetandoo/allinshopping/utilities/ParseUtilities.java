@@ -29,8 +29,7 @@ public final class ParseUtilities
 
 	public static String formatMoney(Number money)
     {
-		final DecimalFormat decimalformat = (DecimalFormat) DecimalFormat
-				.getCurrencyInstance(Constante.PT_BR);
+		DecimalFormat decimalformat = (DecimalFormat) DecimalFormat.getCurrencyInstance(Constante.PT_BR);
         decimalformat.setRoundingMode(RoundingMode.HALF_UP);
 		return decimalformat.format(money);
     }

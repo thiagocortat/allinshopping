@@ -1,15 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:orientation="vertical">
 
-    <Button
-        android:id="@id/secao"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:paddingBottom="5.0dip"
-        android:paddingTop="5.0dip"
-        android:textSize="20.0dip" />
+    <!--<Button-->
+        <!--android:id="@id/secao"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="fill_parent"-->
+        <!--android:paddingBottom="5.0dip"-->
+        <!--android:paddingTop="5.0dip"-->
+        <!--android:textSize="20.0dip" />-->
+
+    <TextView
+        android:id="@+id/secao"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        tools:text="Vestuário"
+        android:gravity="center_vertical"
+        android:padding="@dimen/margin_min"
+        android:textAllCaps="true"
+        android:textColor="@color/main_green_apptheme"/>
+
 
 </LinearLayout>

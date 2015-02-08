@@ -18,7 +18,7 @@ public interface Constante {
     BigDecimal PERCENTUAL_TI = new BigDecimal("0.95");
     BigDecimal PERCENTUAL_VENDEDORAS = new BigDecimal("0.5828");
 
-    Locale PT_BR = new Locale("pt-BR");
+    Locale PT_BR = new Locale("pt","BR");
 
     String SDCARD_ALLINSHOPP_IMAGES = Environment.getExternalStorageDirectory()
             .getAbsolutePath() + "/allinshopp/images/";

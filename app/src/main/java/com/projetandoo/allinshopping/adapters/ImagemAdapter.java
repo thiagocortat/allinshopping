@@ -46,7 +46,7 @@ public class ImagemAdapter extends RecyclerView.Adapter<ImagemViewHolder> implem
 //        Picasso.with(holder.vImageView.getContext()).load(uri).skipMemoryCache().into(holder.vImageView);
 
         Picasso.with(holder.vImageView.getContext())
-                .load(uri).centerCrop().resize(150, 150)
+                .load(uri).centerCrop().resizeDimen(R.dimen.thumb_size, R.dimen.thumb_size)
                 .skipMemoryCache()
                 .into(holder.vImageView);
 

@@ -19,7 +19,7 @@ import com.projetandoo.allinshopping.models.Produto;
 import com.projetandoo.allinshopping.models.Secao;
 import com.projetandoo.allinshopping.utilities.Constante;
 
-public class HomeActivity extends AbstractActivity implements OnClickListener, AdapterView.OnItemClickListener {
+public class HomeActivity extends AbstractActivity implements AdapterView.OnItemClickListener {
 
 	private Secao secao;
 //    private TextView txPromocao;
@@ -42,8 +42,11 @@ public class HomeActivity extends AbstractActivity implements OnClickListener, A
     private void findViews() {
 //        txPromocao = (TextView)findViewById( R.id.promocao );
         secoes = (ListView)findViewById( R.id.secoes );
+        secoes.setOnItemClickListener(this);
+
         produtos = (GridView)findViewById( R.id.promocoes );
         produtos.setOnItemClickListener(this);
+
         boneca = (ImageView)findViewById( R.id.boneca );
     }
 
@@ -60,9 +63,8 @@ public class HomeActivity extends AbstractActivity implements OnClickListener, A
         try {
             super.onStart();
             getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-            CommandFactory.getFactory(this)
-                    .createCommand()
-                    .execute();
+
+            CommandFactory.getFactory(this).createCommand().execute();
 
         }catch( Exception e) {
             new ErrorAlert(this)
@@ -99,13 +101,13 @@ public class HomeActivity extends AbstractActivity implements OnClickListener, A
 		}
 	}
 
-	@Override
-	public void onClick(View view) {
-		this.secao = (Secao) view.getTag();
-		CommandFactory.getFactory(this)
-			    	  .createCommand()
-			    	  .execute();
-	}
+//	@Override
+//	public void onClick(View view) {
+//		this.secao = (Secao) view.getTag();
+//		CommandFactory.getFactory(this)
+//			    	  .createCommand()
+//			    	  .execute();
+//	}
 
 	public void setTitulo(String titulo) {
         setTitle(titulo);
@@ -149,9 +151,17 @@ public class HomeActivity extends AbstractActivity implements OnClickListener, A
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Produto produto = (Produto) parent.getItemAtPosition(position);
-        Intent it = new Intent(this, DetailActivity.class);
-        it.putExtra(Constante.Extra.PRODUTO, produto);
-        startActivity(it);
+
+        if (parent == secoes){
+            this.secao = (Secao) parent.getItemAtPosition(position);
+            CommandFactory.getFactory(this).createCommand().execute();
+        }
+        else {
+            Produto produto = (Produto) parent.getItemAtPosition(position);
+            Intent it = new Intent(this, DetailActivity.class);
+            it.putExtra(Constante.Extra.PRODUTO, produto);
+            startActivity(it);
+        }
+
     }
 }

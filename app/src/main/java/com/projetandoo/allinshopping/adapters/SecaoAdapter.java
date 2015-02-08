@@ -7,6 +7,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.androidquery.AQuery;
 import com.projetandoo.allinshopping.R;
@@ -15,6 +16,7 @@ import com.projetandoo.allinshopping.models.Secao;
 import java.util.List;
 
 public class SecaoAdapter extends ArrayAdapter<Secao> {
+
     private List<Secao> sections;
 //    private AQuery aq;
 
@@ -37,10 +39,14 @@ public class SecaoAdapter extends ArrayAdapter<Secao> {
 
         Secao secao = sections.get(i);
 
-        Button btSecao = (Button) view.findViewById(R.id.secao);
-        btSecao.setText(secao.getNome());
-        btSecao.setTag(secao);
-        btSecao.setOnClickListener((OnClickListener) activity);
+        TextView txSecao =  (TextView) view.findViewById(R.id.secao);
+        txSecao.setText(secao.getNome());
+
+
+//        Button btSecao = (Button) view.findViewById(R.id.secao);
+//        btSecao.setText(secao.getNome());
+//        btSecao.setTag(secao);
+//        btSecao.setOnClickListener((OnClickListener) activity);
 
 //        aq.id(R.id.secao).text(secao.getNome());
 //        aq.id(R.id.secao).clicked((OnClickListener) activity);

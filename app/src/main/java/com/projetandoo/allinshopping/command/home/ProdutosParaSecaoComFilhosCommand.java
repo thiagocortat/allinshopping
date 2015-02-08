@@ -1,5 +1,7 @@
 package com.projetandoo.allinshopping.command.home;
 
+import android.os.AsyncTask;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,15 +24,23 @@ public class ProdutosParaSecaoComFilhosCommand implements Command {
 	@Override
 	public Command execute() {
 
-		List<Secao> secoes = new ArrayList<Secao>(
-				home.getSecao().getSubSecoes());
-		TODOS.setSecaoPai(home.getSecao().getSecaoPai());
-		TODOS.addProdutos(home.getSecao().getProdutos());
-		secoes.add(TODOS);
+        new AsyncTask<Void, Void, List<Secao>>() {
+            @Override
+            protected List<Secao> doInBackground(Void... params) {
+                List<Secao> secoes = new ArrayList<>(home.getSecao().getSubSecoes());
+                TODOS.setSecaoPai(home.getSecao());
+                TODOS.addProdutos(home.getSecao().getProdutos());
+                secoes.add(TODOS);
+                return secoes;
+            }
 
-		home.getSecoes().setAdapter(new SecaoAdapter(home, secoes));
-        home.exibirBoneca(true);
-		home.setBoneca(R.drawable.lista_produtos);
+            @Override
+            protected void onPostExecute(List<Secao> secoes) {
+                home.getSecoes().setAdapter(new SecaoAdapter(home, secoes));
+                home.exibirBoneca(true);
+                home.setBoneca(R.drawable.lista_produtos);
+            }
+        }.execute();
 		
 		return null;
 	}

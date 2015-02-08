@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/imagemProduto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:adjustViewBounds="false"
     tools:src="@drawable/all_in_shopping"
     android:clickable="true"
     android:padding="2dip"
-    android:background="@drawable/recycler_item_selector">
+    android:background="@drawable/recycler_item_selector"
+    android:layout_gravity="center_vertical">
 
 </com.projetandoo.allinshopping.views.SquareImageView>

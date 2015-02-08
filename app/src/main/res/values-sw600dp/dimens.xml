@@ -11,4 +11,6 @@
     <dimen name="margin_big">30dp</dimen>
     <dimen name="margin_super">40dp</dimen>
 
+    <dimen name="thumb_size">80dp</dimen>
+
 </resources>

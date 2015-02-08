@@ -26,6 +26,7 @@ import com.projetandoo.allinshopping.utilities.Constante;
 import com.projetandoo.allinshopping.utilities.ParseUtilities;
 import com.projetandoo.allinshopping.utilities.PriceUtilities;
 import com.projetandoo.allinshopping.utilities.StringUtils;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -33,6 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.InjectView;
+import uk.co.senab.photoview.PhotoViewAttacher;
 
 
 public class DetailActivity extends BaseActivity  implements View.OnClickListener {
@@ -49,6 +51,7 @@ public class DetailActivity extends BaseActivity  implements View.OnClickListene
     protected Produto mProduto;
     protected RecyclerView.LayoutManager mLayoutManager;
     protected ImagemAdapter mAdapter;
+    private PhotoViewAttacher mAttacher;
 
     @Override
     public void onBeforeInjectViews(Bundle savedInstanceState) {
@@ -73,8 +76,7 @@ public class DetailActivity extends BaseActivity  implements View.OnClickListene
         mAdapter.setListener(new OnSelectedImagem() {
             @Override
             public void selectedImagem(Imagem imagem) {
-                Uri uri = Uri.fromFile(new File(imagem.getFileName()));
-                Picasso.with(DetailActivity.this).load(uri).skipMemoryCache().into(imagemProduto);
+                setImagemProduto(imagem.getFileName());
             }
         });
 
@@ -82,8 +84,7 @@ public class DetailActivity extends BaseActivity  implements View.OnClickListene
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        Uri uri = Uri.fromFile(new File(mProduto.getDefaultImage()));
-        Picasso.with(this).load(uri).skipMemoryCache().into(imagemProduto);
+        setImagemProduto(mProduto.getDefaultImage());
 
         titulo.setText(mProduto.getTitulo());
 
@@ -132,6 +133,26 @@ public class DetailActivity extends BaseActivity  implements View.OnClickListene
 
     }
 
+    private void setImagemProduto(String path){
+
+        Uri uri = Uri.fromFile(new File(path));
+        Picasso.with(this).load(uri).skipMemoryCache().into(imagemProduto, new Callback() {
+            @Override
+            public void onSuccess() {
+                // The MAGIC happens here!
+                mAttacher = new PhotoViewAttacher(imagemProduto);
+//                mAttacher.setMinimumScale(0.5f);
+//                mAttacher.setScaleType(ImageView.ScaleType.CENTER);
+            }
+
+            @Override
+            public void onError() {}
+        });
+
+
+    }
+
+
     private Atributo getAtributo(View view) {
 
         final RadioGroup radiogroup = (RadioGroup) view.findViewById(R.id.tamanho);
@@ -144,6 +165,16 @@ public class DetailActivity extends BaseActivity  implements View.OnClickListene
             }
         }
         return null;
+    }
 
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        // Need to call clean-up
+        if(mAttacher != null)
+            mAttacher.cleanup();
     }
 }

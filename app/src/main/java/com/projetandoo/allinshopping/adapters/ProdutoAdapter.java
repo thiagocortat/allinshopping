@@ -96,8 +96,8 @@ public class ProdutoAdapter extends ArrayAdapter<Produto> implements OnClickList
 //        viewHolder.imagem.setTag(produto.getDefaultImage());
 //        viewHolder.imagem.setOnClickListener(new AbrirImagemOnClickEvent());
 
-        viewHolder.adicionar.setTag(produto);
-        viewHolder.adicionar.setOnClickListener(this);
+//        viewHolder.adicionar.setTag(produto);
+//        viewHolder.adicionar.setOnClickListener(this);
 
         return view;
     }
@@ -144,7 +144,7 @@ public class ProdutoAdapter extends ArrayAdapter<Produto> implements OnClickList
 
         SquareImageView imagem;
         TextView titulo, descricao, preco;
-        Button adicionar;
+//        Button adicionar;
         RadioGroup tamanho;
 
         public ViewHolder(View view){
@@ -153,7 +153,7 @@ public class ProdutoAdapter extends ArrayAdapter<Produto> implements OnClickList
             titulo = (TextView) view.findViewById(R.id.titulo);
             descricao = (TextView) view.findViewById(R.id.descricao);
             preco = (TextView) view.findViewById(R.id.preco);
-            adicionar = (Button) view.findViewById(R.id.adicionar);
+//            adicionar = (Button) view.findViewById(R.id.adicionar);
             tamanho = (RadioGroup) view.findViewById(R.id.tamanho);
 
         }

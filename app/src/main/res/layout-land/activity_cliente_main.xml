@@ -6,7 +6,7 @@
     android:paddingLeft="@dimen/margin"
     android:paddingRight="@dimen/margin"
     android:paddingTop="@dimen/margin"
-    android:background="@color/white"
+    android:background="@color/White"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
