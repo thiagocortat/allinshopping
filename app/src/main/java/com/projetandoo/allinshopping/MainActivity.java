@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 
 import com.androidquery.AQuery;
 import com.projetandoo.allinshopping.alerts.ErrorAlert;
@@ -82,7 +83,8 @@ public class MainActivity extends AbstractActivity implements OnClickListener {
     @Override
     public void onStart() {
         super.onStart();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().hide();
     }
 
     @Override
