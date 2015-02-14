@@ -24,6 +24,7 @@
         android:textAllCaps="true"
         android:ellipsize="end"
         android:singleLine="true"
+        android:drawablePadding="@dimen/margin_min"
         android:drawableLeft="@drawable/ic_wallet_travel"
         android:drawableStart="@drawable/ic_wallet_travel"
         android:textColor="@color/main_green_apptheme"/>

@@ -2,6 +2,7 @@ package com.projetandoo.allinshopping.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -16,6 +17,14 @@ import com.projetandoo.allinshopping.models.Secao;
 import java.util.List;
 
 public class SecaoAdapter extends ArrayAdapter<Secao> {
+
+    public static final int VESTUARIO       = 151;
+    public static final int UD              = 192;
+    public static final int CALCADOS        = 197;
+    public static final int BIJUTERIAS      = 201;
+    public static final int COSMETICOS      = 206;
+    public static final int SEX_SHOP        = 217;
+    public static final int LIVROS          = 289;
 
     private List<Secao> sections;
 //    private AQuery aq;
@@ -41,7 +50,7 @@ public class SecaoAdapter extends ArrayAdapter<Secao> {
 
         TextView txSecao =  (TextView) view.findViewById(R.id.secao);
         txSecao.setText(secao.getNome());
-
+        setIconForSection(secao, txSecao);
 
 //        Button btSecao = (Button) view.findViewById(R.id.secao);
 //        btSecao.setText(secao.getNome());
@@ -52,6 +61,45 @@ public class SecaoAdapter extends ArrayAdapter<Secao> {
 //        aq.id(R.id.secao).clicked((OnClickListener) activity);
 //        aq.id(R.id.secao).tag(secao);
         return view;
+    }
+
+    public void setIconForSection(Secao secao, TextView tx){
+
+        if (secao.getSecaoPai() != null)
+            setIconForSection(secao.getSecaoPai(), tx);
+        else {
+            int resIcon;
+            switch (secao.getId().intValue()) {
+                case VESTUARIO:
+                    resIcon = R.drawable.icon_t_shirt;
+                    break;
+                case UD:
+                    resIcon = R.drawable.icon_dining_room;
+                    break;
+                case CALCADOS:
+                    resIcon = R.drawable.icon_womens_shoe;
+                    break;
+                case BIJUTERIAS:
+                    resIcon = R.drawable.icon_wedding_rings;
+                    break;
+                case COSMETICOS:
+                    resIcon = R.drawable.icon_antiseptic_cream;
+                    break;
+                case SEX_SHOP:
+                    resIcon = R.drawable.icon_gender;
+                    break;
+                case LIVROS:
+                    resIcon = R.drawable.icon_books;
+                    break;
+                default:
+                    resIcon = R.drawable.ic_wallet_travel;
+                    break;
+            }
+
+            Drawable icon = getContext().getResources().getDrawable(resIcon);
+            tx.setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null);
+//            tx.setCompoundDrawables(icon, null, null, null);
+        }
     }
 
 }
