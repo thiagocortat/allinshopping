@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.nhaarman.listviewanimations.appearance.simple.AlphaInAnimationAdapter;
+import com.projetandoo.allinshopping.adapters.SecaoAdapter;
 import com.projetandoo.allinshopping.alerts.ErrorAlert;
 import com.projetandoo.allinshopping.commandfactory.CommandFactory;
 import com.projetandoo.allinshopping.models.Produto;
@@ -53,6 +55,12 @@ public class HomeActivity extends AbstractActivity implements AdapterView.OnItem
 	public ListView getSecoes() {
 		return this.secoes;
 	}
+
+    public void setSecaoAdapter(SecaoAdapter adapter) {
+        AlphaInAnimationAdapter animationAdapter = new AlphaInAnimationAdapter(adapter);
+        animationAdapter.setAbsListView(secoes);
+        secoes.setAdapter(animationAdapter);
+    }
 
 	public GridView getProdutos() {
 		return this.produtos;

@@ -47,7 +47,8 @@ public class HomeCommand implements Command {
 
                 @Override
                 protected void onPostExecute(Void aVoid) {
-                    home.getSecoes().setAdapter(new SecaoAdapter(home, secaoList));
+//                    home.getSecoes().setAdapter(new SecaoAdapter(home, secaoList));
+                    home.setSecaoAdapter(new SecaoAdapter(home, secaoList));
                     home.exibirBoneca(true);
                     home.setBoneca(R.drawable.lista_secoes);
                     home.setTitle(R.string.app_name);

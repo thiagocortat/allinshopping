@@ -41,6 +41,8 @@ public class Secao
     @ForeignCollectionField(eager=true)
     private Collection<Secao> subsecoes = new ArrayList<Secao>();
 
+    private Collection<Secao> subsecoesComProdutos;
+
 	public Secao() {
 		super();
 	}
@@ -127,13 +129,24 @@ public class Secao
 
     public Collection<Secao> getSubSecoes()
     {
-    	Collection<Secao> subsecoes = new ArrayList<Secao>();
+        if (subsecoesComProdutos != null)
+            return subsecoesComProdutos;
+
+        subsecoesComProdutos = new ArrayList<Secao>();
 		for (Secao secao : this.subsecoes) {
     		if( secao.temProduto() ) {
-    			subsecoes.add(secao);
+                subsecoesComProdutos.add(secao);
     		}
     	}
-        return subsecoes;
+        return subsecoesComProdutos;
+//        return subsecoes;
+//    	Collection<Secao> subsecoes = new ArrayList<Secao>();
+//		for (Secao secao : this.subsecoes) {
+//    		if( secao.temProduto() ) {
+//    			subsecoes.add(secao);
+//    		}
+//    	}
+//        return subsecoes;
     }
 
     public String getTitulo()

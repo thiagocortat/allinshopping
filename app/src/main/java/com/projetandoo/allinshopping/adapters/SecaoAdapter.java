@@ -27,7 +27,6 @@ public class SecaoAdapter extends ArrayAdapter<Secao> {
     public static final int LIVROS          = 289;
 
     private List<Secao> sections;
-//    private AQuery aq;
 
     public SecaoAdapter(Context context, List<Secao> secoes) {
         super(context, android.R.layout.simple_list_item_1, secoes);
@@ -42,24 +41,12 @@ public class SecaoAdapter extends ArrayAdapter<Secao> {
             view = activity.getLayoutInflater().inflate(R.layout.secoes, null);
         }
 
-//        if (aq == null) {
-//            aq = new AQuery(view);
-//        }
-
         Secao secao = sections.get(i);
 
         TextView txSecao =  (TextView) view.findViewById(R.id.secao);
         txSecao.setText(secao.getNome());
         setIconForSection(secao, txSecao);
 
-//        Button btSecao = (Button) view.findViewById(R.id.secao);
-//        btSecao.setText(secao.getNome());
-//        btSecao.setTag(secao);
-//        btSecao.setOnClickListener((OnClickListener) activity);
-
-//        aq.id(R.id.secao).text(secao.getNome());
-//        aq.id(R.id.secao).clicked((OnClickListener) activity);
-//        aq.id(R.id.secao).tag(secao);
         return view;
     }
 

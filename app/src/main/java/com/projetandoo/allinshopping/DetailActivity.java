@@ -135,19 +135,22 @@ public class DetailActivity extends BaseActivity  implements View.OnClickListene
 
     private void setImagemProduto(String path){
 
-        Uri uri = Uri.fromFile(new File(path));
-        Picasso.with(this).load(uri).skipMemoryCache().into(imagemProduto, new Callback() {
-            @Override
-            public void onSuccess() {
-                // The MAGIC happens here!
-                mAttacher = new PhotoViewAttacher(imagemProduto);
-//                mAttacher.setMinimumScale(0.5f);
-//                mAttacher.setScaleType(ImageView.ScaleType.CENTER);
-            }
+        try{
+            Uri uri = Uri.fromFile(new File(path));
+            Picasso.with(this).load(uri).skipMemoryCache().into(imagemProduto, new Callback() {
+                @Override
+                public void onSuccess() {
+                    // The MAGIC happens here!
+                    mAttacher = new PhotoViewAttacher(imagemProduto);
+                }
 
-            @Override
-            public void onError() {}
-        });
+                @Override
+                public void onError() {}
+            });
+        }catch (NullPointerException e) {
+            imagemProduto.setImageResource(R.drawable.img_default_placeholder);
+        }
+
 
 
     }

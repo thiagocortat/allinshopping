@@ -42,13 +42,21 @@ public class ImagemAdapter extends RecyclerView.Adapter<ImagemViewHolder> implem
 
         Imagem imagem = imagemList.get(i);
 
-        Uri uri = Uri.fromFile(new File(imagem.getFileName()));
-//        Picasso.with(holder.vImageView.getContext()).load(uri).skipMemoryCache().into(holder.vImageView);
+        try {
+            Uri uri = Uri.fromFile(new File(imagem.getFileName()));
 
-        Picasso.with(holder.vImageView.getContext())
-                .load(uri).centerCrop().resizeDimen(R.dimen.thumb_size, R.dimen.thumb_size)
-                .skipMemoryCache()
-                .into(holder.vImageView);
+            Picasso.with(holder.vImageView.getContext())
+                    .load(uri).centerCrop().resizeDimen(R.dimen.thumb_size, R.dimen.thumb_size)
+                    .skipMemoryCache()
+                    .into(holder.vImageView);
+        }
+        catch (NullPointerException e) {
+            Picasso.with(holder.vImageView.getContext())
+                    .load(R.drawable.img_default_placeholder)
+                    .centerCrop().resizeDimen(R.dimen.thumb_size, R.dimen.thumb_size)
+                    .into(holder.vImageView);
+        }
+
 
 
         holder.itemView.setTag(imagem);

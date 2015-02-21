@@ -17,6 +17,8 @@ public class ProdutosParaSecaoComFilhosCommand implements Command {
 	
 	private HomeActivity home;
 
+    private static long lastSecaoId = -1;
+
 	public ProdutosParaSecaoComFilhosCommand(HomeActivity home) {
 		this.home = home;
 	}
@@ -27,21 +29,32 @@ public class ProdutosParaSecaoComFilhosCommand implements Command {
         new AsyncTask<Void, Void, List<Secao>>() {
             @Override
             protected List<Secao> doInBackground(Void... params) {
-                List<Secao> secoes = new ArrayList<>(home.getSecao().getSubSecoes());
-                TODOS.setSecaoPai(home.getSecao());
-                TODOS.addProdutos(home.getSecao().getProdutos());
-                secoes.add(TODOS);
+
+                List<Secao> secoes = null;
+                if (lastSecaoId == -1 || (lastSecaoId != home.getSecao().getId())) {
+                    secoes = new ArrayList<>(home.getSecao().getSubSecoes());
+                    TODOS.setSecaoPai(home.getSecao());
+                    TODOS.addProdutos(home.getSecao().getProdutos());
+                    secoes.add(TODOS);
+                    lastSecaoId = home.getSecao().getId();
+                }
+
                 return secoes;
             }
 
             @Override
             protected void onPostExecute(List<Secao> secoes) {
-                home.getSecoes().setAdapter(new SecaoAdapter(home, secoes));
+//                home.getSecoes().setAdapter(new SecaoAdapter(home, secoes));
+
+                if (secoes != null) {
+                    home.setSecaoAdapter(new SecaoAdapter(home, secoes));
+                }
+
                 home.exibirBoneca(true);
                 home.setBoneca(R.drawable.lista_produtos);
             }
         }.execute();
-		
+
 		return null;
 	}
 

@@ -67,6 +67,11 @@ dependencies {
     compile 'com.mcxiaoke.photoview:library:1.2.3'
     compile 'uk.co.chrisjenx:calligraphy:2.0.1'
 
+
+    compile 'com.nhaarman.listviewanimations:lib-core:3.1.0@aar'
+    compile 'com.nhaarman.listviewanimations:lib-manipulation:3.1.0@aar'
+    compile 'com.nhaarman.listviewanimations:lib-core-slh:3.1.0@aar'
+
     compile 'com.j256.ormlite:ormlite-android:4.48'
     compile 'com.j256.ormlite:ormlite-core:4.48'
 //    compile 'com.j256.ormlite:ormlite-jdbc:4.48'
