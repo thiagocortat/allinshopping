@@ -5,8 +5,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.support.annotation.DrawableRes;
+import android.support.annotation.StringRes;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -21,13 +25,16 @@ import com.projetandoo.allinshopping.models.Produto;
 import com.projetandoo.allinshopping.models.Secao;
 import com.projetandoo.allinshopping.utilities.Constante;
 
+import io.codetail.animation.SupportAnimator;
+import io.codetail.animation.ViewAnimationUtils;
+
 public class HomeActivity extends AbstractActivity implements AdapterView.OnItemClickListener {
 
 	private Secao secao;
 //    private TextView txPromocao;
     private ListView secoes;
     private GridView produtos;
-    private ImageView boneca;
+    private ViewGroup boneca;
 
     @Override
 	protected void onCreate(final Bundle bundle) {
@@ -49,7 +56,7 @@ public class HomeActivity extends AbstractActivity implements AdapterView.OnItem
         produtos = (GridView)findViewById( R.id.promocoes );
         produtos.setOnItemClickListener(this);
 
-        boneca = (ImageView)findViewById( R.id.boneca );
+        boneca = (ViewGroup)findViewById( R.id.boneca );
     }
 
 	public ListView getSecoes() {
@@ -131,15 +138,27 @@ public class HomeActivity extends AbstractActivity implements AdapterView.OnItem
 		return this.secao;
 	}
 
-	public void setBoneca(int image) {
-        boneca.setImageResource(image);
+	public void setBoneca(@DrawableRes int imageRes, @StringRes int textRes, @StringRes int descriptionRes) {
+//        boneca.setImageResource(image);
+
+        ImageView image = (ImageView)findViewById( R.id.imageEmpty );
+        image.setImageResource(imageRes);
+        TextView tx = (TextView)findViewById( R.id.txTop );
+        tx.setText(textRes);
+        TextView txDescription = (TextView)findViewById( R.id.txDescription );
+
+        txDescription.setVisibility((descriptionRes <= 0) ? View.GONE : View.VISIBLE);
+        if (descriptionRes > 0) {
+            txDescription.setText(descriptionRes);
+        }
 		
 	}
 
 	public void exibirBoneca(boolean show) {
 		if(show) {
-            boneca.setVisibility(View.VISIBLE);
-            produtos.setVisibility(View.GONE);
+//            boneca.setVisibility(View.VISIBLE);
+//            produtos.setVisibility(View.GONE);
+            appearBoneca();
 		} else {
             boneca.setVisibility(View.GONE);
             produtos.setVisibility(View.VISIBLE);
@@ -156,6 +175,21 @@ public class HomeActivity extends AbstractActivity implements AdapterView.OnItem
 		}
 		
 	}
+
+    void appearBoneca(){
+        boneca.setVisibility(View.VISIBLE);
+        produtos.setVisibility(View.GONE);
+
+        float finalRadius = Math.max(boneca.getWidth(), boneca.getHeight()) * 1.5f;
+        // get the center for the clipping circle
+        int cx = (boneca.getLeft() + boneca.getRight()) / 2;
+        int cy = (boneca.getTop() + boneca.getBottom()) / 2;
+
+        SupportAnimator animator = ViewAnimationUtils.createCircularReveal(boneca, cx, cy, 0, finalRadius);
+        animator.setDuration(1000);
+        animator.setInterpolator(new AccelerateDecelerateInterpolator());
+        animator.start();
+    }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

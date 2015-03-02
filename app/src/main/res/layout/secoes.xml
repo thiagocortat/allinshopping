@@ -24,6 +24,7 @@
         android:textAllCaps="true"
         android:ellipsize="end"
         android:singleLine="true"
+        android:layout_marginLeft="5dp"
         android:drawablePadding="@dimen/margin_min"
         android:drawableLeft="@drawable/ic_wallet_travel"
         android:drawableStart="@drawable/ic_wallet_travel"

@@ -50,8 +50,9 @@ public class ProdutosParaSecaoComFilhosCommand implements Command {
                     home.setSecaoAdapter(new SecaoAdapter(home, secoes));
                 }
 
+                home.setBoneca(R.drawable.img_shopping_4, R.string.message_department, 0);
                 home.exibirBoneca(true);
-                home.setBoneca(R.drawable.lista_produtos);
+
             }
         }.execute();
 

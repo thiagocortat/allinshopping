@@ -49,8 +49,8 @@ public class HomeCommand implements Command {
                 protected void onPostExecute(Void aVoid) {
 //                    home.getSecoes().setAdapter(new SecaoAdapter(home, secaoList));
                     home.setSecaoAdapter(new SecaoAdapter(home, secaoList));
+                    home.setBoneca(R.drawable.img_shopping_1, R.string.title_well_come, R.string.choice_department);
                     home.exibirBoneca(true);
-                    home.setBoneca(R.drawable.lista_secoes);
                     home.setTitle(R.string.app_name);
 
                     home.hideProgress();

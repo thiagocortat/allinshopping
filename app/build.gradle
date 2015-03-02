@@ -2,20 +2,21 @@
 buildscript {
     repositories {
         mavenCentral()
+
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.0.1'
+        classpath 'com.android.tools.build:gradle:1.1.0'
         classpath 'org.robolectric:robolectric-gradle-plugin:0.14.1'
     }
 }
 
 apply plugin: 'com.android.application'
-apply plugin: 'robolectric'
+//apply plugin: 'robolectric'
 
 android {
     compileSdkVersion 21
-    buildToolsVersion "21.1.1"
+    buildToolsVersion "21.1.2"
 
     defaultConfig {
         applicationId "com.projetandoo.allinshopping"
@@ -48,10 +49,10 @@ android {
 
 }
 
-robolectric {
-    include '**/*Test.class'
-    exclude '**/espresso/**/*.class'
-}
+//robolectric {
+//    include '**/*Test.class'
+//    exclude '**/espresso/**/*.class'
+//}
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -66,7 +67,7 @@ dependencies {
     compile 'com.makeramen:roundedimageview:1.5.0'
     compile 'com.mcxiaoke.photoview:library:1.2.3'
     compile 'uk.co.chrisjenx:calligraphy:2.0.1'
-
+    compile 'com.github.ozodrukh:CircularReveal:1.0.4@aar'
 
     compile 'com.nhaarman.listviewanimations:lib-core:3.1.0@aar'
     compile 'com.nhaarman.listviewanimations:lib-manipulation:3.1.0@aar'
@@ -87,30 +88,29 @@ dependencies {
     compile 'com.google.code.gson:gson:2.3.1'
     compile 'com.squareup.picasso:picasso:2.4.0'
 
-    androidTestCompile 'org.hamcrest:hamcrest-integration:1.1'
-    androidTestCompile 'org.hamcrest:hamcrest-core:1.1'
-    androidTestCompile 'org.hamcrest:hamcrest-library:1.1'
-
-    androidTestCompile('junit:junit:4.12') {
-        exclude module: 'hamcrest-core'
-    }
-    androidTestCompile('org.robolectric:robolectric:2.4') {
-        exclude module: 'classworlds'
-        exclude module: 'commons-logging'
-        exclude module: 'httpclient'
-        exclude module: 'maven-artifact'
-        exclude module: 'maven-artifact-manager'
-        exclude module: 'maven-error-diagnostics'
-        exclude module: 'maven-model'
-        exclude module: 'maven-project'
-        exclude module: 'maven-settings'
-        exclude module: 'plexus-container-default'
-        exclude module: 'plexus-interpolation'
-        exclude module: 'plexus-utils'
-        exclude module: 'wagon-file'
-        exclude module: 'wagon-http-lightweight'
-        exclude module: 'wagon-provider-api'
-    }
-//    androidTestCompile 'com.android.support.test:testing-support-lib:0.1'
+//    androidTestCompile 'org.hamcrest:hamcrest-integration:1.1'
+//    androidTestCompile 'org.hamcrest:hamcrest-core:1.1'
+//    androidTestCompile 'org.hamcrest:hamcrest-library:1.1'
+//
+//    androidTestCompile('junit:junit:4.12') {
+//        exclude module: 'hamcrest-core'
+//    }
+//    androidTestCompile('org.robolectric:robolectric:2.4') {
+//        exclude module: 'classworlds'
+//        exclude module: 'commons-logging'
+//        exclude module: 'httpclient'
+//        exclude module: 'maven-artifact'
+//        exclude module: 'maven-artifact-manager'
+//        exclude module: 'maven-error-diagnostics'
+//        exclude module: 'maven-model'
+//        exclude module: 'maven-project'
+//        exclude module: 'maven-settings'
+//        exclude module: 'plexus-container-default'
+//        exclude module: 'plexus-interpolation'
+//        exclude module: 'plexus-utils'
+//        exclude module: 'wagon-file'
+//        exclude module: 'wagon-http-lightweight'
+//        exclude module: 'wagon-provider-api'
+//    }
 
 }

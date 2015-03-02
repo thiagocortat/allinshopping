@@ -22,5 +22,8 @@
 
     <string name="hello_world">Hello world!</string>
 
+    <string name="title_well_come">Bem Vindo ao Catálogo Digital</string>
+    <string name="message_department">O que você deseja ver nesse departamento</string>
+    <string name="choice_department">Escolha ao lado o departamento que deseja visitar</string>
 
 </resources>
