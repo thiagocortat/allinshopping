@@ -2,6 +2,8 @@ package com.projetandoo.allinshopping.utilities;
 
 import android.os.Environment;
 
+import com.projetandoo.allinshopping.MyApplication;
+
 import java.math.BigDecimal;
 import java.util.Locale;
 
@@ -20,8 +22,10 @@ public interface Constante {
 
     Locale PT_BR = new Locale("pt","BR");
 
-    String SDCARD_ALLINSHOPP_IMAGES = Environment.getExternalStorageDirectory()
-            .getAbsolutePath() + "/allinshopp/images/";
+//    String SDCARD_ALLINSHOPP_IMAGES = Environment.getExternalStorageDirectory()
+//            .getAbsolutePath() + "/allinshopp/images/";
+    String SDCARD_ALLINSHOPP = "allinshopp";
+    String SDCARD_ALLINSHOPP_IMAGES = "images";
     String DATE_LONG_FORMAT = "dd/MM/yyyy";
     String DATE_FOR_MASK_FORMAT = "ddMMyyyy";
     String AUTH_USER = "projetandoo@projetandoo.com.br";

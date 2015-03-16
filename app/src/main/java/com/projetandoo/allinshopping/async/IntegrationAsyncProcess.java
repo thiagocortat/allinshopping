@@ -88,7 +88,7 @@ public class IntegrationAsyncProcess extends AsyncTask<Void, String, String> {
         if (StringUtils.isEmpty(message)) {
             service.atualizar();
             try {
-                Thread.sleep(5000L);
+                Thread.sleep(2000L);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

@@ -2,8 +2,10 @@ package com.projetandoo.allinshopping.integration.downloads;
 
 import java.io.*;
 import java.net.HttpURLConnection;
+import java.nio.ByteBuffer;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -25,10 +27,13 @@ import com.projetandoo.allinshopping.exceptions.IntegrationException;
 import com.projetandoo.allinshopping.models.Imagem;
 import com.projetandoo.allinshopping.models.Produto;
 import com.projetandoo.allinshopping.utilities.Constante;
+import com.projetandoo.allinshopping.utilities.FileUtil;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.OkHttpDownloader;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
+
+import hugo.weaving.DebugLog;
 
 public class DownloadResource {
 
@@ -48,10 +53,11 @@ public class DownloadResource {
 
 	}
 
+    @DebugLog
 	public void getResourceByProduto(Produto produto, final OnFinishSaveImages listener) //NOPMD
 			throws IntegrationException {
 
-        File directory = new File(Constante.SDCARD_ALLINSHOPP_IMAGES);
+        File directory = new File(MyApplication.getImageResPath() );
         if( !directory.exists() ){
             directory.mkdirs();
         }
@@ -59,43 +65,49 @@ public class DownloadResource {
         int i = -1;
 		for( Imagem imagem : produto.getImagens() ) {
 
-            //Bug, crie a featue usando Picasso
-//			String imagepath = getResourceByImage(imagem);
-//			imagem.setFileName(imagepath);
-
             Boolean hasSaved = (++i == (produto.getImagens().size()-1));
-            new AsyncTask<Object, Void, Void>(){
-
-                @Override
-                protected Void doInBackground(Object... params) {
-                    Imagem imagem = (Imagem) params[0];
-                    Boolean hasSaved = (Boolean) params[1];
+//            new AsyncTask<Object, Void, Void>(){
+//
+//                @Override
+//                protected Void doInBackground(Object... params) {
+//                    Imagem imagem = (Imagem) params[0];
+//                    Boolean hasSaved = (Boolean) params[1];
                     Bitmap bitmap;
                     try {
-                        bitmap = Picasso.with(MyApplication.getAppContext()).load(imagem.getURL()).get();
-                        File file = new File(Constante.SDCARD_ALLINSHOPP_IMAGES , String.format("%s-%s.jpg", imagem.getProduto().getId(),imagem.getId()));
+                        String imagePath =  String.format("%s-%s.jpg", imagem.getProduto().getId(), imagem.getId());
+                        if ( !FileUtil.exists(MyApplication.getImageResPath() + "/" + imagePath)) {
 
-//                        file.createNewFile();
-                        FileOutputStream ostream = new FileOutputStream(file);
-                        if (bitmap != null)
-                            bitmap.compress(Bitmap.CompressFormat.JPEG, 75, ostream);
-                        ostream.close();
+                            bitmap = Picasso.with(MyApplication.getAppContext()).load(imagem.getURL()).skipMemoryCache().get();
+                            File file = new File(MyApplication.getImageResPath(), imagePath);
 
-                        imagem.setFileName(file.getAbsolutePath());
+                            FileOutputStream ostream = new FileOutputStream(file);
+                            if (bitmap != null)
+                                bitmap.compress(Bitmap.CompressFormat.JPEG, 75, ostream);
+                            ostream.close();
 
-                        if (bitmap != null) {
-                            bitmap.recycle();
+                            imagem.setFileName(file.getAbsolutePath());
+
+                            if (bitmap != null) {
+                                bitmap.recycle();
+                                bitmap = null;
+                            }
                         }
-
-                        if(hasSaved && listener != null)
-                            listener.onFinishSaveImages();
-
+                        else {
+                            imagem.setFileName(MyApplication.getImageResPath() + "/" + imagePath);
+                        }
+                    }catch (OutOfMemoryError ignored){
+                        Log.e("DownloadResource", "OutOfMemoryError");
+                        System.gc();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    return null;
-                }
-            }.execute(imagem, hasSaved);
+
+                    if(hasSaved && listener != null)
+                        listener.onFinishSaveImages();
+
+//                    return null;
+//                }
+//            }.execute(imagem, hasSaved);
         }
 		
 	}

@@ -34,8 +34,11 @@ public class ProductRepository extends AbstractRepository<Produto, Long> {
 
 	public void removeAll() throws SQLException {
 
-		this.getDatabase().getProdutoDao()
-				.executeRawNoArgs("DELETE from produto");
+		List<Produto> list = this.getBySales();
+        getDatabase().getProdutoDao().delete(list);
+
+//		this.getDatabase().getProdutoDao()
+//				.executeRawNoArgs("DELETE from produto");
 	}
 
 	@Override

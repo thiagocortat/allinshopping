@@ -26,7 +26,7 @@ public class IntegrationProcess {
      * Gets the number of available cores (not always the same as the maximum number of cores)
      */
     private static int NUMBER_OF_CORES = Runtime.getRuntime().availableProcessors();
-    private static final int MAX_POOL_SIZE = 10;
+    private static final int MAX_POOL_SIZE = 15;
     // Sets the amount of time an idle thread waits before terminating
     private static final int KEEP_ALIVE_TIME = 1;
     // Sets the Time Unit to seconds
@@ -137,7 +137,11 @@ public class IntegrationProcess {
                                     blockingQueue);
 
 		for (Produto produto : produtos) {
-			t.execute(new IntegrationProdutoRunnable(produto, produtoservice));
+			try {
+                t.execute(new IntegrationProdutoRunnable(produto, produtoservice));
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
 		}
 
         // wait for all of the executor threads to finish

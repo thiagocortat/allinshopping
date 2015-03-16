@@ -26,8 +26,8 @@
         android:singleLine="true"
         android:layout_marginLeft="5dp"
         android:drawablePadding="@dimen/margin_min"
-        android:drawableLeft="@drawable/ic_wallet_travel"
-        android:drawableStart="@drawable/ic_wallet_travel"
+        tools:drawableLeft="@drawable/ic_wallet_travel"
+        tools:drawableStart="@drawable/ic_wallet_travel"
         android:textColor="@color/main_green_apptheme"/>
 
 

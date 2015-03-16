@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
 
+import com.projetandoo.allinshopping.utilities.Constante;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -67,5 +69,13 @@ public class MyApplication extends Application {
 
     public static Context getAppContext() {
         return mContext;
+    }
+
+    public static String getMainFolderPath() {
+        return MyApplication.getAppContext().getExternalFilesDir(Constante.SDCARD_ALLINSHOPP) + "/";
+    }
+
+    public static String getImageResPath() {
+        return getMainFolderPath()  + Constante.SDCARD_ALLINSHOPP_IMAGES ;
     }
 }

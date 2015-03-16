@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import android.content.Context;
 
+import com.projetandoo.allinshopping.MyApplication;
 import com.projetandoo.allinshopping.models.Atributo;
 import com.projetandoo.allinshopping.models.Imagem;
 import com.projetandoo.allinshopping.models.Produto;
@@ -34,7 +35,8 @@ public class ProdutoService {
 			PRODUCT_REPOSITORY.insert(produto);
 
 			for (Imagem imagem : produto.getImagens()) {
-				IMAGEM_REPOSITORY.insert(imagem);
+				if (IMAGEM_REPOSITORY.getById(imagem.getId()) == null)
+					IMAGEM_REPOSITORY.insert(imagem);
 			}
 
 			for (Atributo atributo : produto.getAtributos()) {
@@ -49,11 +51,11 @@ public class ProdutoService {
 	public void removeAll() {
 		try {
             PRODUCT_REPOSITORY.removeAll();
-			File directory = new File(Constante.SDCARD_ALLINSHOPP_IMAGES);
-			if (directory.exists()) {
-				directory.delete();
-			}
-			directory.mkdir();
+//			File directory = new File(MyApplication.getImageResPath() );
+//			if (directory.exists()) {
+//				directory.delete();
+//			}
+//			directory.mkdir();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
