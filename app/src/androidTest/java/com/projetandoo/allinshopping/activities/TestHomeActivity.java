@@ -61,15 +61,15 @@ public class TestHomeActivity {
 		
 	}
 	
-	@Test
-	public void listarProduto() {
-		final HomeActivity activity = Robolectric.buildActivity(HomeActivity.class).create().start().get();
-		final Secao secao = (Secao) activity.getSecoes().getItemAtPosition(0);
-		final View item = new View(Robolectric.application.getApplicationContext());
-		item.setTag(secao);
-		activity.onClick(item);
-		
-		assertEquals( secao.getTitulo() , activity.getTitulo() );
-	}
+//	@Test
+//	public void listarProduto() {
+//		final HomeActivity activity = Robolectric.buildActivity(HomeActivity.class).create().start().get();
+//		final Secao secao = (Secao) activity.getSecoes().getItemAtPosition(0);
+//		final View item = new View(Robolectric.application.getApplicationContext());
+//		item.setTag(secao);
+//		activity.onClick(item);
+//
+//		assertEquals( secao.getTitulo() , activity.getTitulo() );
+//	}
 
 }

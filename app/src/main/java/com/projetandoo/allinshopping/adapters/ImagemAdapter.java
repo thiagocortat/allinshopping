@@ -1,5 +1,6 @@
 package com.projetandoo.allinshopping.adapters;
 
+import android.content.res.Resources;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -41,14 +42,20 @@ public class ImagemAdapter extends RecyclerView.Adapter<ImagemViewHolder> implem
     public void onBindViewHolder(ImagemViewHolder holder, int i) {
 
         Imagem imagem = imagemList.get(i);
-
+        Uri uri = null;
         try {
-            Uri uri = Uri.fromFile(new File(imagem.getFileName()));
+            uri = Uri.fromFile(new File(imagem.getFileName()));
 
             Picasso.with(holder.vImageView.getContext())
                     .load(uri).centerCrop().resizeDimen(R.dimen.thumb_size, R.dimen.thumb_size)
                     .skipMemoryCache()
                     .into(holder.vImageView);
+        }
+        catch (Resources.NotFoundException e) {
+            Picasso.with(holder.vImageView.getContext())
+                    .load(uri).centerCrop()
+                    .skipMemoryCache()
+                    .centerCrop().resize(80, 80).into(holder.vImageView);
         }
         catch (NullPointerException e) {
             Picasso.with(holder.vImageView.getContext())

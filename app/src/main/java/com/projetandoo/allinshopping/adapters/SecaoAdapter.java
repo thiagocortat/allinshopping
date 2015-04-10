@@ -3,6 +3,7 @@ package com.projetandoo.allinshopping.adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import com.androidquery.AQuery;
 import com.projetandoo.allinshopping.R;
 import com.projetandoo.allinshopping.models.Secao;
+import com.projetandoo.allinshopping.views.AutoFitTextView;
 
 import java.util.List;
 
@@ -43,9 +45,17 @@ public class SecaoAdapter extends ArrayAdapter<Secao> {
 
         Secao secao = sections.get(i);
 
-        TextView txSecao =  (TextView) view.findViewById(R.id.secao);
+
+
+        AutoFitTextView txSecao =  (AutoFitTextView) view.findViewById(R.id.secao);
+        txSecao.setMaxLines(1);
         txSecao.setText(secao.getNome());
         setIconForSection(secao, txSecao);
+//
+//        final int maxWidth  = txSecao.getWidth();
+//        final int maxHeight = view.getHeight();
+//        txSecao.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,
+//                maxWidth, getContext().getResources().getDisplayMetrics()));
 
         return view;
     }
@@ -61,6 +71,7 @@ public class SecaoAdapter extends ArrayAdapter<Secao> {
                     resIcon = R.drawable.icon_t_shirt;
                     break;
                 case UD:
+                    tx.setText("UD");
                     resIcon = R.drawable.icon_dining_room;
                     break;
                 case CALCADOS:
