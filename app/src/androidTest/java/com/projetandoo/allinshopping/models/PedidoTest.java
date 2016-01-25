@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Created by Marceloo on 18/09/2014.
+ * Created by Thiago Cortat on 18/09/2014.
  */
 public class PedidoTest {
 

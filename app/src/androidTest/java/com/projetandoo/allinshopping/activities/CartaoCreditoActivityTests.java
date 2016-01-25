@@ -25,7 +25,7 @@ import static org.junit.Assert.assertEquals;
 import static org.robolectric.Robolectric.shadowOf;
 
 /**
- * Created by Marceloo on 09/10/2014.
+ * Created by Thiago Cortat on 09/10/2014.
  */
 @RunWith(RobolectricTestRunner.class)
 public class CartaoCreditoActivityTests {

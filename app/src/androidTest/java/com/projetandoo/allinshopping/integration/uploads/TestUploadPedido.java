@@ -11,7 +11,7 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 
 /**
- * Created by Marceloo on 24/11/2014.
+ * Created by Thiago Cortato on 24/11/2014.
  */
 @RunWith(RobolectricTestRunner.class)
 public class TestUploadPedido {
@@ -37,21 +37,21 @@ public class TestUploadPedido {
         produto.setId(762L);
 
         Cliente cliente = new Cliente();
-        cliente.setPrimeiroNome("MARCELO");
-        cliente.setUltimoNome("RODRIGUES");
-        cliente.setEmail("marcelosrodrigues@globo.com");
+        cliente.setPrimeiroNome("THIAGO");
+        cliente.setUltimoNome("CORTAT");
+        cliente.setEmail("thiagocortat@gmail.com");
         cliente.setDataNascimento(DateTime.now().toDate());
 
         Endereco endereco = new Endereco();
         Estado estado = new Estado();
         estado.setId(330L);
         endereco.setBairro("PECHINCHA");
-        endereco.setCelular("21981363699");
+        endereco.setCelular("21989999999");
         endereco.setCep("22743310");
         endereco.setCidade("RIO DE JANEIRO");
         endereco.setEstado(estado);
         endereco.setLogradouro("ESTRADA CAMPO DA AREIA, 84 APTO 206");
-        endereco.setTelefone("2133926222");
+        endereco.setTelefone("2133222222");
 
         cliente.setEndereco(endereco);
 
@@ -62,7 +62,7 @@ public class TestUploadPedido {
         pagamento.setCVV("123");
         pagamento.setDataValidade(DateTime.now().plusYears(1).toDate());
         pagamento.setNumero("4012001038443335");
-        pagamento.setPortador("MARCELO DA SILVA RODRIGUES");
+        pagamento.setPortador("THIAGO CORTAT TAVARES");
 
         FormaPagamento formaPagamento = new FormaPagamento();
         formaPagamento.setId(2L);

@@ -55,7 +55,7 @@ public class AtualizacaoSistemaActivityTests {
     @Test
     public void atualizarSistema() {
 
-        activity.setEmail("marcelosrodrigues@globo.com");
+        activity.setEmail("thiagocortat@gmail.com");
         activity.setPassword("2pk0#3ty?");
         activity.onClick(activity.findViewById(R.id.logar));
 

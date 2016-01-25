@@ -27,7 +27,7 @@ import java.util.ResourceBundle;
 import com.projetandoo.allinshopping.responserules.HttpEntityResponseRule;
 
 /**
- * Created by Marceloo on 19/09/2014.
+ * Created by Thiago Cortato on 19/09/2014.
  */
 @RunWith(RobolectricTestRunner.class)
 public class TestShoppingCartAdapter {

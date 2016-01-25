@@ -66,7 +66,7 @@ public class TestConfigurationActivity {
 	@Test
 	public void deveSalvarEAtualizarOBancoDeDados() {
 		
-		activity.setNomeLoja("Marcelo");
+		activity.setNomeLoja("Thiago Cortat");
 		activity.onClick(activity.findViewById(R.id.salvar));
 		
 		final AlertDialog dialog = ShadowAlertDialog.getLatestAlertDialog();
@@ -88,7 +88,7 @@ public class TestConfigurationActivity {
 		editor.putString(Constante.DATA_ATUALIZACAO, ParseUtilities.formatDate(DateTime.now().plusDays(1).toDate(),"yyyy-MM-dd HH:mm:ss"));
 		editor.commit();
 		
-		activity.setNomeLoja("Marcelo");
+		activity.setNomeLoja("Thiago Cortat");
 		
 		activity.onClick(activity.findViewById(R.id.salvar));
 		

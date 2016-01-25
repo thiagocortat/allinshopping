@@ -50,10 +50,10 @@ public class TestClienteService {
 		
 		Cliente cliente = new Cliente();
 		cliente.setEndereco(endereco);
-		cliente.setPrimeiroNome("Marcelo");
-        cliente.setUltimoNome("Marcelo");
+		cliente.setPrimeiroNome("Thiago");
+        cliente.setUltimoNome("Cortat");
 		cliente.setDataNascimento(new DateTime(1977, 8, 17, 0 , 0).toDate());
-		cliente.setEmail("marcelosrodrigues@globo.com");
+		cliente.setEmail("thiagocortat@gmail.com");
 		
 		return cliente;
 	}
@@ -80,8 +80,8 @@ public class TestClienteService {
 		service.save(cliente);
 		
 		Cliente toupdate = repository.getById(cliente.getId());
-		toupdate.setPrimeiroNome("Marcelo");
-        toupdate.setUltimoNome("Rodrigues");
+		toupdate.setPrimeiroNome("Thiago");
+        toupdate.setUltimoNome("Cortat");
 		toupdate.getEndereco().setLogradouro("teste teste");
 		service.save(toupdate);
 		

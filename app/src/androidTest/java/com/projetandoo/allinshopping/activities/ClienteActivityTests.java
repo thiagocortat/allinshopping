@@ -34,7 +34,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.robolectric.Robolectric.shadowOf;
 
 /**
- * Created by Marceloo on 06/10/2014.
+ * Created by Thiago Cortat on 06/10/2014.
  */
 @RunWith(RobolectricTestRunner.class)
 public class ClienteActivityTests {
@@ -79,7 +79,7 @@ public class ClienteActivityTests {
         activity.setCep("22743310");
         activity.setCidade("RIO DE JANEIRO");
         activity.setDataNascimento(DateTime.now().toDate());
-        activity.setEmail("marcelosrodrigues@globo.com");
+        activity.setEmail("thiagocortat@gmail.com");
         activity.setEndereco("Estrada Campo da Areia, 84 apto 206");
         activity.setEstado(repository.findByUF("RJ"));
         activity.setTelefone("2133926222");
@@ -88,7 +88,7 @@ public class ClienteActivityTests {
 
         Cliente cliente = clienteRepository.list().get(0);
         assertNotNull(cliente);
-        assertEquals("marcelosrodrigues@globo.com", cliente.getEmail());
+        assertEquals("thiagocortat@gmail.com", cliente.getEmail());
 
         final ShadowActivity actual = shadowOf(activity);
         final Intent next = actual.getNextStartedActivity();
@@ -110,13 +110,13 @@ public class ClienteActivityTests {
         activity.setPrimeiroNome("TESTE");
         activity.setUltimoNome("TESTE");
         activity.setBairro("Pechincha");
-        activity.setCelular("21981363699");
+        activity.setCelular("2199999999");
         activity.setCep("22743310");
         activity.setCidade("RIO DE JANEIRO");
-        activity.setEmail("marcelosrodrigues@globo.com");
+        activity.setEmail("thiagocortat@gmail.com");
         activity.setEndereco("Estrada Campo da Areia, 84 apto 206");
         activity.setEstado(repository.findByUF("RJ"));
-        activity.setTelefone("2133926222");
+        activity.setTelefone("2133922222");
         activity.onClick(activity.findViewById(R.id.salvar));
 
         final AlertDialog dialog = ShadowAlertDialog.getLatestAlertDialog();

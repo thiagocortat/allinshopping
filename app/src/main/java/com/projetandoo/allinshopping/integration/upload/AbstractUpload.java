@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 import static java.lang.String.format;
 
 /**
- * Created by Marceloo on 24/11/2014.
+ * Created by Thiago Cortat on 24/11/2014.
  */
 public abstract class AbstractUpload<E> implements Upload<E> {
 
